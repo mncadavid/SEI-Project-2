@@ -25,6 +25,7 @@ Chris Myers & Marissa Cadavid Berns
 * More field in data model. Ratings, awards, country
 * A movie show page will link to a place to watch the movie on a streaming site
 * Styling and animations for main login page 
+* Users can rate movies out of 5 stars
 
 
 ## ERD:
