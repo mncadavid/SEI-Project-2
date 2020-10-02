@@ -2,7 +2,7 @@
 
 Chris Myers & Marissa Cadavid Berns
 
-MVP:
+## MVP:
 
 * App will make calls to OMDB movie API to populate movie information after a user searches for it by name. (http://www.omdbapi.com/)
 * Users can log into an account (read)
@@ -16,7 +16,7 @@ MVP:
 * They may remove movies from lists (delete)
 
 
-Gold:
+## Gold:
 
 * Users can search by a movie using additional categories such as genre or year released, director, etc.
 * Users can see what movies other users have seen.
@@ -27,6 +27,16 @@ Gold:
 * Styling and animations for main login page 
 
 
-ERD:
+## ERD:
 
 ![ERD](https://i.imgur.com/AyiwWaR.png)
+
+## Wireframes:
+
+### Splash page:
+![Splash Page](https://i.imgur.com/5PwX1nY.jpg)
+
+### Main search page
+![Main Search Page](https://i.imgur.com/PWBSfyh.jpg)
+
+
