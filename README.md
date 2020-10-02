@@ -1,5 +1,7 @@
 # SEI-Project-2
 
+Chris Myers & Marissa Cadavid Berns
+
 MVP:
 	• App will make calls to OMDB movie API to populate movie information after a user searches for it by name. (http://www.omdbapi.com/)
 
