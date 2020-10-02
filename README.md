@@ -46,6 +46,16 @@ Chris Myers & Marissa Cadavid Berns
 ### Movie lists page
 ![Movie Lists page](https://i.imgur.com/Cj57cvg.jpg)
 
+## User Stories
+### User Account Stories
+* As an unregistered user, I want to sign up for the website so that I can add track the movies I have watched and want to watch.
+* As a user, I want to be able to delete my account so that I can be forgotten and my data can be erased.
+* As a user, I want to be able to edit my account so that I can change my password or personal information.
+* As a user, I want to be able to log out so that others can use my computer without accessing my account.
+### User Movie Stories
+* As a user, I want to search for movies so that I can add them to my lists.
+* As a user, I want to be able to move movies from my want to watch list to watched list so that I can keep them organized.
+* As a user, I want to be able to add movies to either my want to watch or watched list.
 
 
 
