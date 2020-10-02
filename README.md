@@ -41,6 +41,11 @@ Chris Myers & Marissa Cadavid Berns
 ![Main Search Page](https://i.imgur.com/PWBSfyh.jpg)
 
 ### User account page
-![User account page](https://i.imgur.com/3SuJqc6.jpg)
+![User account page](https://i.imgur.com/Q7gAOy8.jpg)
+
+### Movie lists page
+![Movie Lists page](https://i.imgur.com/3SuJqc6.jpg)
+
+
 
 
