@@ -39,4 +39,7 @@ Chris Myers & Marissa Cadavid Berns
 ### Main search page
 ![Main Search Page](https://i.imgur.com/PWBSfyh.jpg)
 
+### User account page
+![User account page](https://i.imgur.com/3SuJqc6.jpg)
+
 
