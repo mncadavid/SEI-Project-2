@@ -18,6 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Movie.init({
+    imdbId: DataTypes.STRING,
     title: DataTypes.STRING,
     img: DataTypes.STRING,
     releaseYear: DataTypes.INTEGER,
