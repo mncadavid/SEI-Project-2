@@ -5,7 +5,7 @@ const methodOverride = require('method-override');
 const jwt = require("jsonwebtoken");
 const cookieParser = require('cookie-parser');
 
-// const routes = require('./routes');
+const routes = require('./routes');
 const app = express();
 
 const User = require('./models').User;
@@ -32,7 +32,7 @@ const verifyToken = (req, res, next) => {
 }
 
 // new routes
-// app.use('/fruits', verifyToken, routes.fruits);
+app.use('/movies', routes.movies);
 // app.use('/users', verifyToken, routes.users);
 // app.use('/auth', routes.auth);
 
