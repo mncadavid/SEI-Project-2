@@ -9,20 +9,31 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       movieId: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
-      genre: {
+      genreId: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: new Date()
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: new Date()
       }
-    });
+    },
+      {
+        uniqueKeys: {
+          actions_unique: {
+            fields: ['movieId', 'genreId']
+          }
+        }
+      });
   },
   down: async (queryInterface, Sequelize) => {
     await queryInterface.dropTable('MovieGenres');
