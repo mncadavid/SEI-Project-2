@@ -30,7 +30,7 @@ Chris Myers & Marissa Cadavid Berns
 
 ## ERD:
 
-![ERD](https://i.imgur.com/AyiwWaR.png)
+![ERD](https://i.imgur.com/ZX2KarE.png)
 
 ## Wireframes:
 
