@@ -8,8 +8,6 @@ const renderSearchPage = (req, res) => {
     res.render('movies/index.ejs');
 }
 
-
-
 const searchForMovie = (req, res) => {
     const title = 'Alien';
 
@@ -42,11 +40,6 @@ const searchForMovie = (req, res) => {
 
 
 }
-
-
-
-
-
 
 
 module.exports = {

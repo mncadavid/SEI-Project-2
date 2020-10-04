@@ -1,10 +1,12 @@
-const User = require('../models').User;
-const bcrypt = require('bcryptjs');
 require('dotenv').config();
+const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+
+const User = require('../models').User;
 const Genre = require('../models').Genre;
 
-const signUpRender = (req,res) => {
+
+const renderSignUp = (req,res) => {
     Genre.findAll()
     .then(genres => {
         res.render('auth/signup.ejs', {
@@ -12,13 +14,12 @@ const signUpRender = (req,res) => {
         });
     })
 }
-const logInRender = (req,res) => {
-    res.render('auth/login.ejs',
-    {
-        message: ' '
-    });
+
+const renderLogIn = (req,res) => {
+    res.render('auth/login.ejs');
 }
-const signUp = (req,res) => {
+
+const signUpUser = (req,res) => {
     bcrypt.genSalt(10, (err, salt) => {
        if(err){
            return res.send(err);
@@ -47,7 +48,8 @@ const signUp = (req,res) => {
        })
     })
 }
-const logIn = (req,res) => {
+
+const logInUser = (req,res) => {
     User.findOne({
         where: {
             username: req.body.username
@@ -88,9 +90,10 @@ const logIn = (req,res) => {
     })
 }
 
+
 module.exports ={
-    signUpRender,
-    logInRender,
-    logIn,
-    signUp
+    renderSignUp,
+    renderLogIn,
+    signUpUser,
+    logInUser
 }

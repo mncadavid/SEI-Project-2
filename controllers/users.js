@@ -1,7 +1,8 @@
 const User = require('../models').User;
 const Genre = require('../models').Genre;
 
-const show = (req,res) => {
+
+const renderUserProfile = (req,res) => {
     User.findByPk(req.user.id)
     .then(user => {
         Genre.findAll()
@@ -13,7 +14,7 @@ const show = (req,res) => {
         })
     })
 }
-const editProfile = (req,res) => {
+const editUserProfile = (req,res) => {
     User.update(req.body, {
         where: {id: req.params.index},
         returning: true
@@ -23,7 +24,7 @@ const editProfile = (req,res) => {
     })
 }
 
-const deleteProfile = (req, res) => {
+const deleteUserProfile = (req, res) => {
     User.destroy({
         where: {id: req.params.index}
     })
@@ -34,7 +35,7 @@ const deleteProfile = (req, res) => {
 
 
 module.exports = {
-show,
-editProfile,
-deleteProfile,
+    renderUserProfile,
+    editUserProfile,
+    deleteUserProfile
 }
