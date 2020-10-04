@@ -2,9 +2,15 @@ const User = require('../models').User;
 const bcrypt = require('bcryptjs');
 require('dotenv').config();
 const jwt = require('jsonwebtoken');
+const Genre = require('../models').Genre;
 
 const signUpRender = (req,res) => {
-    res.render('auth/signup.ejs');
+    Genre.findAll()
+    .then(genres => {
+        res.render('auth/signup.ejs', {
+            genres: genres
+        });
+    })
 }
 const logInRender = (req,res) => {
     res.render('auth/login.ejs',

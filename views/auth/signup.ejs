@@ -13,9 +13,11 @@
         Password: <input type="text" name="password" required><br><br>
         Email: <input type="text" name="email"><br><br>
         Favorite Genre: <select name="favoriteGenre">
-            <option value="Test">Test</option>
+            <%for (let i=0; i<genres.length; i++){%>
+                <option value=genres[i].id><%=genres[i].genre%></option>
+                <%}%>
         </select>
-        <input type="submit" value="SignUp">
+        <input type="submit" value="Sign Up">
     </form>
 </body>
 </html>
