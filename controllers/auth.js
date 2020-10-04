@@ -82,7 +82,6 @@ const logIn = (req,res) => {
         }
     })
     .catch(err => {
-        console.log("caught");
         res.render('auth/login.ejs', {
             message: err
         })
