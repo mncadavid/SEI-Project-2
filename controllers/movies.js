@@ -34,11 +34,30 @@ const searchForMovie = (req, res) => {
             'x-api-key': process.env.OMDB_API_KEY
         }
     }).then((response) => {
-        console.log(response.data.Search);
+        const foundMovies = response.data.Search;
+        console.log(foundMovies);
+
+        for( let i = 0 ; i < foundMovies.length ; i ++ ) {
+            
+            /*
+                data fields returned do not match:
+                
+                Title: 'Ratatouille', => title
+                Year: '2007', => releaseYear string not integer
+                imdbID => imdbId
+                Poster => img
+
+                director and plot not returned unless movie queried directly
+            
+            */
+        }
+
+
+
 
         if(response.data) {
             res.render('movies/index.ejs', {
-                movies: response.data.Search
+                movies: foundMovies
             });
         }
     }).catch((err) => {
