@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+</head>
+<body>
+    <h1>Sign Up</h1>
+    <form action='/auth/signup' method=POST>
+        Name: <input type="text" name="name" required> <br><br>
+        Username: <input type="text" name="username" required><br><br>
+        Password: <input type="text" name="password" required><br><br>
+        Email: <input type="text" name="email"><br><br>
+        Favorite Genre: <select name="favoriteGenre">
+            <option value="Test">Test</option>
+        </select>
+        <input type="submit" value="SignUp">
+    </form>
+</body>
+</html>

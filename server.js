@@ -33,18 +33,14 @@ const verifyToken = (req, res, next) => {
 
 // new routes
 app.use('/movies', routes.movies);
-// app.use('/users', verifyToken, routes.users);
-// app.use('/auth', routes.auth);
+app.use('/users', verifyToken, routes.users);
+app.use('/auth', routes.auth);
 
 // splash page
-// app.get('/', (req, res) => {
-//     User.findAll()
-//     .then(users => {
-//         res.render('users/index.ejs', {
-//             users: users
-//         });
-//     })
-// });
+app.get('/', (req, res) => {
+    res.render('auth/login.ejs')
+})
+
 
 app.listen(process.env.PORT, () => {
     console.log(`I am listening on port ${process.env.PORT} whats up?`);
