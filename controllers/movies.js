@@ -9,34 +9,61 @@ const renderSearchPage = (req, res) => {
 }
 
 const searchForMovie = (req, res) => {
-    const title = 'Alien';
 
     // search for movie in movies table
-        // if found, return and render page with movie information
+    
+    // if found, return and render page with movie information
+   
+    // if not found make API call
+    
+    // if found in api call add to db
 
-        // if not found make API call
-            // if found add to db
-                // make db call
-                // render page
+    // make db call
+    // render page
+    
+    // not found 
+    // return not found message
 
-            // not found 
-                // return not found message
+
+
 
     axios({
-        url: `http://www.omdbapi.com/?t=${title}&apikey=${process.env.OMDB_API_KEY}`,
+        url: `http://www.omdbapi.com/?s=${req.body.title}&type=movie&apikey=${process.env.OMDB_API_KEY}`,
         method: 'get',
         headers: {
             'x-api-key': process.env.OMDB_API_KEY
         }
     }).then((response) => {
-        console.log(response.data);
-        res.render('movies/index.ejs', {
-            movie: response.data
-        });
-        
+        console.log(response.data.Search);
+
+        if(response.data) {
+            res.render('movies/index.ejs', {
+                movies: response.data.Search
+            });
+        }
     }).catch((err) => {
         console.error(err);
-    })
+    });
+
+
+    // Movie.findAll()
+    // .then(movies => {
+    //     console.log(movies);
+    //     if(movies) {
+    //         res.render('movies/index.ejs', {
+    //             movies: movies
+    //         });
+    //     } else {
+
+    //     }
+       
+    // })
+    // .catch(err => {
+    //     console.log(err);
+    //     res.send(err);
+    // });
+
+
 
 
 }
