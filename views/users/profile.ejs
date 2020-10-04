@@ -6,11 +6,16 @@
     <title>User Profile Page</title>
 </head>
 <body>
-    <h1>Welcome <%=user.name%></h1>
+    <h1>Account Information</h1>
     <form action='/users/profile/<%=user.id%>/edit?_method=PUT' method=POST>
         Name:<input type="text" name="name" value="<%=user.name%>"><br><br>
-        Username:<input type="text" name="username" value="<%=user.username%>"><br><br>
-        Password:<input type="text" name="password" value="<%=user.password%>"><br><br>
+        Username: <%=user.name%>
+        Email: <input type="text" name="username" value="<%=user.username%>"><br><br>
+        Favorite Genre: <select name="favoriteGenre">
+            <%for (let i=0; i<genres.length; i++){%>
+                <option value=genres[i].id><%=genres[i].genre%></option>
+                <%}%><br><br>
+        Password:<input type="text" name="password" ><br><br>
         <input type="submit" value="Edit Profile">
     </form>
     <br>

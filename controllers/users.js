@@ -1,10 +1,15 @@
 const User = require('../models').User;
+const Genre = require('../models').Genre;
 
 const show = (req,res) => {
     User.findByPk(req.user.id)
     .then(user => {
-        res.render('users/profile.ejs', {
-            user: user
+        Genre.findAll()
+        .then(genres => {
+            res.render('users/profile.ejs', {
+                user: user,
+                genres: genres
+            })
         })
     })
 }
