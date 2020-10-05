@@ -24,6 +24,7 @@ const signUpUser = (req,res) => {
        if(err){
            return res.send(err);
        } 
+       
        bcrypt.hash(req.body.password, salt, (err, hashedPwd) => {
            if(err){
                return res.send(err);
