@@ -80,13 +80,29 @@ footer {
 .movie-list-item {
     border: 4px solid #B3A125;
     width: 100%;
-    height: 10%;
+    height: 20vh;
     padding: 10px;
+
+}
+
+.movie-list-data {
     display: flex;
-    flex-flow: column wrap;
-    justify-content: flex-start;
-    align-content: center;
-    margin: 2px;}
+    flex-flow: row wrap;
+    justify-content: left;
+}
 
+.thumbnail {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    height: 18vh;
+    object-fit: scale-down;
+}
 
-
+.poster {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    height: 50vh;
+    object-fit: scale-down;
+}

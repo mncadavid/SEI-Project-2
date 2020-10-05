@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Find a Flick!</title>
+    <title>Pick a Flick!</title>
 
     <link rel="stylesheet" href="/css/app.css">
 
@@ -11,7 +11,7 @@
 <body>
     <header>
         <nav>
-            <a href="/movies">Search Movies</a>
+            <a href="/movies">Pick a Flick!</a>
             <a href="/users/lists">My Lists</a>
             <a href="/users/profile">My Account</a>
             <a href="/auth/signout">Sign out</a>
@@ -20,7 +20,7 @@
 
     <div class='content-box'>
         <div class='search-menu'>
-            <h1>Find a Flick!</h1>
+            <h1>Pick a Flick!</h1>
         
             <form class='search-form' action="/movies/search?_method=PUT" method="POST">
                 <% if(locals.message) { %>
@@ -37,10 +37,10 @@
                     <% for(let i = 0 ; i < movies.length ; i++ ) { %>
                         <li class='movie-list-item'>
                             <div class='movie-list-data'>
+                                <img class='thumbnail ' src="<%=movies[i].Poster%>" alt="">
                                 <a href="/movies/<%=movies[i].imdbID%>">
                                     <h2><%=movies[i].Title%></h2>
                                 </a>
-                                <img src="<%=movies[i].Poster%>" alt="">
                                 <p><%=movies[i].Plot%></p>
                                 <a href="https://www.imdb.com/title/<%=movies[i].imdbID%>/">
                                     <%=movies[i].Title%> on IMDb
