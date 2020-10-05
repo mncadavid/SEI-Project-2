@@ -1,4 +1,5 @@
 const Movie = require('../models').Movie;
+const Genre = require('../models').Genre;
 
 const axios = require('axios');
 const { Op } = require("sequelize");
@@ -33,6 +34,19 @@ const renderMovieShowPage = (req, res) => {
                         returning: true
                     })
                     .then(updateMovie => {
+                        genres = response.data.Genre.split(',');
+                        let userPromises = [];
+
+                        for( let i = 0 ; i < genres.length ; i++) {
+                            userPromises.push(Genre.upsert({
+                                genre: genres[i].split(" ").join("")
+                            }))
+                        }
+    
+                        Promise.all(userPromises)
+                        .then(addedGenres => {
+                            console.log("Genres added");
+                        })
                         Movie.findAll({
                             where: {
                                 imdbID: req.params.imdbID
