@@ -13,6 +13,9 @@ const renderSignUp = (req,res) => {
             genres: genres
         });
     })
+    .catch(err => {
+        console.log(err);
+    })
 }
 
 const renderLogIn = (req,res) => {
@@ -24,6 +27,7 @@ const signUpUser = (req,res) => {
        if(err){
            return res.send(err);
        } 
+       
        bcrypt.hash(req.body.password, salt, (err, hashedPwd) => {
            if(err){
                return res.send(err);
@@ -43,7 +47,10 @@ const signUpUser = (req,res) => {
                )
                res.cookie("jwt", token);
                console.log(token);
-               res.redirect(`/users/profile/${newUser.id}`);
+               res.redirect(`/users/profile`);
+           })
+           .catch(err => {
+               console.log(err);
            })
        })
     })
@@ -71,7 +78,7 @@ const logInUser = (req,res) => {
                     )
                     console.log(token);
                     res.cookie("jwt",token);
-                    res.redirect(`/users/profile/${foundUser.id}`);
+                    res.redirect(`/movies`);
                 } else{
                     res.send('Incorrect Password');
                 }
@@ -90,10 +97,15 @@ const logInUser = (req,res) => {
     })
 }
 
+const logOutUser = (req, res) => {
+    res.cookie("jwt", "");
+    res.redirect('/auth/login');
+}
 
 module.exports ={
     renderSignUp,
     renderLogIn,
     signUpUser,
-    logInUser
+    logInUser,
+    logOutUser
 }

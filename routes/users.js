@@ -3,11 +3,13 @@ const ctrl = require('../controllers');
 const router = express.Router();
 
 
-router.get('/profile/:index', ctrl.users.renderUserProfile);
+router.get('/profile', ctrl.users.renderUserProfile);
 
-router.put('/profile/:index/edit', ctrl.users.editUserProfile);
+router.put('/profile/edit', ctrl.users.editUserProfile);
 
-router.delete('/profile/:index/delete', ctrl.users.deleteUserProfile);
+router.delete('/profile/delete', ctrl.users.deleteUserProfile);
+
+router.put('/profile/changePassword', ctrl.users.changeUserPassword);
 
 
 module.exports = router;
