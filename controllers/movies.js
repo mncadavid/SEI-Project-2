@@ -10,46 +10,38 @@ const renderSearchPage = (req, res) => {
 
 const searchForMovie = (req, res) => {
 
-    // search for movie in movies table
+    // search for movies in movies table => saw
     
-    // if found, return and render page with movie information
+        // if found, return and 
+            // render page with movies information
    
-    // if not found make API call
-    
-    // if found in api call add to db
+        // if not found make API call
+        
+            // if found in api call add to db
+                // create call add short info from results to db
+                    // then search for movies in movies table
+                        // if found
+                            // render page
 
-    // make db call
-    // render page
-    
-    // not found 
-    // return not found message
+                        // if not found error has occurred
+
+            // not found 
+            // return not found message
+
+            
 
 
 
 
     axios({
         url: `http://www.omdbapi.com/?s=${req.body.title}&type=movie&apikey=${process.env.OMDB_API_KEY}`,
-        method: 'get',
-        headers: {
-            'x-api-key': process.env.OMDB_API_KEY
-        }
+        method: 'get'
     }).then((response) => {
         const foundMovies = response.data.Search;
         console.log(foundMovies);
 
         for( let i = 0 ; i < foundMovies.length ; i ++ ) {
-            
-            /*
-                data fields returned do not match:
-                
-                Title: 'Ratatouille', => title
-                Year: '2007', => releaseYear string not integer
-                imdbID => imdbId
-                Poster => img
 
-                director and plot not returned unless movie queried directly
-            
-            */
         }
 
 
