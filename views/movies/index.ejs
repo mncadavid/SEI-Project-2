@@ -4,43 +4,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Find a Flick!</title>
+
+    <link rel="stylesheet" href="/css/app.css">
+
 </head>
 <body>
     <header>
-        <h1>Search Page</h1>
-
         <nav>
-            <a href="/users">My Account</a>
+            <a href="/movies">Search Movies</a>
+            <a href="/users/lists">My Lists</a>
+            <a href="/users/profile">My Account</a>
+            <a href="/auth/signout">Sign out</a>
         </nav>
     </header>
 
-    <form action="/movies/search?_method=PUT" method="POST">
-        <% if(locals.message) { %>
-            <h2><%=message%></h2>
-        <% } %>
-        <input type="text" name="title" id="" />
-        <input type="submit" name="search" id="" />
-    </form>
-
-    <% if(locals.movies) { %>
-        <div class='search-results'>
-            <ul>
-                <% for(let i = 0 ; i < movies.length ; i++ ) { %>
-                    <li class='movie-list-item'>
-                        <a href="/movies/<%=movies[i].imdbID%>">
-                            <h2><%=movies[i].Title%></h2>
-                        </a>
-                        <img src="<%=movies[i].Poster%>" alt="">
-                        <p><%=movies[i].Plot%></p>
-                        <a href="https://www.imdb.com/title/<%=movies[i].imdbID%>/">
-                            <%=movies[i].Title%> on IMDb
-                        </a>
-                        
-                    </li>
+    <div class='content-box'>
+        <div class='search-menu'>
+            <h1>Find a Flick!</h1>
+        
+            <form class='search-form' action="/movies/search?_method=PUT" method="POST">
+                <% if(locals.message) { %>
+                    <h2 class='error-message'><%=message%></h2>
                 <% } %>
-            </ul>
+                <input type="text" name="title" id="" />
+                <input type="submit" name="search" id="" />
+            </form>
         </div>
-    <% } %>
     
+        <% if(locals.movies) { %>
+            <div class='search-results-container'>
+                <ul class='search-results-list'>
+                    <% for(let i = 0 ; i < movies.length ; i++ ) { %>
+                        <li class='movie-list-item'>
+                            <div class='movie-list-data'>
+                                <a href="/movies/<%=movies[i].imdbID%>">
+                                    <h2><%=movies[i].Title%></h2>
+                                </a>
+                                <img src="<%=movies[i].Poster%>" alt="">
+                                <p><%=movies[i].Plot%></p>
+                                <a href="https://www.imdb.com/title/<%=movies[i].imdbID%>/">
+                                    <%=movies[i].Title%> on IMDb
+                                </a>
+                            </div>
+                        </li>
+                    <% } %>
+                </ul>
+            </div>
+        <% } %>
+    </div>
+    
+    <footer>
+        <p>
+            Created by 
+            <a href="#">
+                Chris Myers
+            </a> and 
+            <a href="#">
+                Marissa Cadavid
+            </a>
+        </p>
+    </footer>
 </body>
 </html>
