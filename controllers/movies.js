@@ -8,7 +8,45 @@ const renderSearchPage = (req, res) => {
     res.render('movies/index.ejs');
 }
 
-renderMovieShowPage
+const renderMovieShowPage = (req, res) => {
+    //find movie in db by imdbID
+    Movie.findAll({
+        where: {
+            imdbID: req.params.imdbID
+        }
+    })
+    .then(foundMovie => {
+        console.log(foundMovie[0].dataValues);
+        res.render('movies/showMovie.ejs', {
+            movie: foundMovie[0].dataValues
+        });
+
+        // found
+            // if incomplete data - director string empty
+                // api call to get complete data
+                    // update movie entry
+                        // find movie in db by imdbID
+                            // render
+
+            // if complete data    
+                // res.render('movies/showMovie.ejs' , {
+                //  foundMovie    
+                // })
+
+        // not found
+            // api call to get complete data
+                // update movie entry
+                    // find movie in db by imdbID
+                        // render
+
+
+
+
+    })
+    .catch (err => {
+        console.log(err);
+    });
+}
 
 const searchForMovie = (req, res) => {
     Movie.findAll({
