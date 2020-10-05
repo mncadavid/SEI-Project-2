@@ -15,36 +15,24 @@ const renderMovieShowPage = (req, res) => {
         }
     })
     .then(foundMovie => {
-        console.log(foundMovie);
-
         if(foundMovie.length != 0) {
             movieData = foundMovie[0].dataValues
 
             if(movieData.Director && movieData.Plot) {
-                console.log('data complete');
-
                 res.render('movies/showMovie.ejs' , {
                  movie: movieData    
                 })
-    
             } else {
-                console.log('data incomplete');
-
-                // api call to get complete data
                 axios({
                     url: `http://www.omdbapi.com/?i=${req.params.imdbID}&type=movie&apikey=${process.env.OMDB_API_KEY}`,
                     method: 'get'
                 })
                 .then(response => {
-                    console.log(response.data);
-
-                    // update movie entry
                     Movie.update(response.data, {
                         where: {imdbID: req.params.imdbID},
                         returning: true
                     })
                     .then(updateMovie => {
-                        // find movie in db by imdbID
                         Movie.findAll({
                             where: {
                                 imdbID: req.params.imdbID
@@ -68,26 +56,19 @@ const renderMovieShowPage = (req, res) => {
                 });
             }
         } else {
-            console.log('movie not found');
-
-            // api call to get complete data
             axios({
                 url: `http://www.omdbapi.com/?i=${req.params.imdbID}&type=movie&apikey=${process.env.OMDB_API_KEY}`,
                 method: 'get'
             })
             .then(response => {
-                console.log(response.data)
-                // create movie entry
                 Movie.create(response.data)
                 .then(newMovie => {
-                    // find movie in db by imdbID
                     Movie.findAll({
                         where: {
                             imdbID: req.params.imdbID
                         }
                     })
                     .then(foundMovie => {
-                        // render
                         res.render('movies/showMovie.ejs', {
                             movie: foundMovie[0].dataValues
                         });
@@ -100,8 +81,6 @@ const renderMovieShowPage = (req, res) => {
             .catch (err => {
                 console.log(err);
             });
-
-            // res.redirect('/movies');
         }
     })
     .catch (err => {
