@@ -39,11 +39,27 @@ const searchForMovie = (req, res) => {
                 // if found in api call add to db
                 if(foundMovies != undefined) {
                     // create call add short info from results to db
-                        // then search for movies in movies table
-                            // if found
-                                // render page
-        
-                            // if not found error has occurred
+                    for( let i = 0 ; i < foundMovies.length ; i++) {
+                        console.log('adding ' + foundMovies[i]);
+                        Movie.upsert(foundMovies[i])
+                        .then( insertedMovie => {
+                            console.log('added ' + foundMovies[i]);
+
+                            return
+                        })
+                        .catch( err => {
+                            console.log(err);
+                        });
+                    }
+
+                    // then search for movies in movies table
+                        // if found
+                            // render page
+    
+                        // if not found error has occurred
+
+
+
                     res.render('movies/index.ejs', {
                         movies: foundMovies
                     });
