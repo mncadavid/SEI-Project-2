@@ -1,0 +1,70 @@
+body {
+    margin: 0;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+}
+
+header {
+    background-color: darkgray;
+}
+
+nav {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+}
+
+h1 {
+    text-align: center;
+}
+
+.search-menu {
+    margin: 0;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+}
+
+.search-form {
+    margin: 0 auto;
+}
+
+.error-message {
+    color: red;
+}
+
+.search-results-container {
+    margin: 0 auto;
+    background: lightyellow;
+    padding: 10px;
+    width: 70%;
+
+}
+
+.search-results-list {
+    margin: 0;
+    padding-inline-start: 0;
+    list-style: none;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+}
+
+.movie-list-item {
+    border: 4px solid #B3A125;
+    width: 100%;
+    height: 10%;
+    padding: 10px;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: flex-start;
+    align-content: center;
+    margin: 2px;}
+
+
+footer {
+    background-color: darkgray;
+
+}
+

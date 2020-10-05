@@ -3,12 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movie Show Page</title>
+    <title><%=movie.Title%></title>
 </head>
 <body>
+    <header>
+        <nav>
+            <a href="/movies">Search Movies</a>
+            <a href="/users/lists">My Lists</a>
+            <a href="/users/profile">My Account</a>
+            <a href="/auth/signout">Sign out</a>
+        </nav>
+    </header>
+
     <h1><%=movie.Title%></h1>
 
     <img src="<%=movie.Poster%>" alt="">
+    <p><%=movie.Year%></p>
+    <p><%=movie.Director%></p>
+    <p></p>
     <p><%=movie.Plot%></p>
     <a href="https://www.imdb.com/title/<%=movie.imdbID%>/">
         <%=movie.Title%> on IMDb
