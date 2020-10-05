@@ -10,6 +10,9 @@
 
 
     <form action="/movies/search?_method=PUT" method="POST">
+        <% if(locals.message) { %>
+            <h2><%=message%></h2>
+        <% } %>
         <input type="text" name="title" id="" />
         <input type="submit" name="search" id="" />
     </form>
