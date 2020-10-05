@@ -9,15 +9,14 @@ const renderSearchPage = (req, res) => {
 }
 
 const renderMovieShowPage = (req, res) => {
-    //find movie in db by imdbID
     Movie.findAll({
         where: {
             imdbID: req.params.imdbID
         }
     })
     .then(foundMovie => {
-        // found
         console.log(foundMovie);
+
         if(foundMovie.length != 0) {
             movieData = foundMovie[0].dataValues
 
@@ -30,24 +29,79 @@ const renderMovieShowPage = (req, res) => {
     
             } else {
                 console.log('data incomplete');
-                // if incomplete data - director string empty
 
-                    // api call to get complete data
-                        // update movie entry
-                            // find movie in db by imdbID
-                                res.render('movies/showMovie.ejs', {
-                                    movie: movieData
-                                });
+                // api call to get complete data
+                axios({
+                    url: `http://www.omdbapi.com/?i=${req.params.imdbID}&type=movie&apikey=${process.env.OMDB_API_KEY}`,
+                    method: 'get'
+                })
+                .then(response => {
+                    console.log(response.data);
 
+                    // update movie entry
+                    Movie.update(response.data, {
+                        where: {imdbID: req.params.imdbID},
+                        returning: true
+                    })
+                    .then(updateMovie => {
+                        // find movie in db by imdbID
+                        Movie.findAll({
+                            where: {
+                                imdbID: req.params.imdbID
+                            }
+                        })
+                        .then(foundMovie => {
+                            res.render('movies/showMovie.ejs', {
+                                movie: foundMovie[0].dataValues
+                            });
+                        })
+                        .catch (err => {
+                            console.log(err);
+                        });
+                    })
+                    .catch (err => {
+                        console.log(err);
+                    });
+                })
+                .catch (err => {
+                    console.log(err);
+                });
             }
         } else {
-            // not found
-            console.log('movie not found')
-            res.redirect('/movies');
-                // api call to get complete data
-                    // update movie entry
-                        // find movie in db by imdbID
-                            // render
+            console.log('movie not found');
+
+            // api call to get complete data
+            axios({
+                url: `http://www.omdbapi.com/?i=${req.params.imdbID}&type=movie&apikey=${process.env.OMDB_API_KEY}`,
+                method: 'get'
+            })
+            .then(response => {
+                console.log(response.data)
+                // create movie entry
+                Movie.create(response.data)
+                .then(newMovie => {
+                    // find movie in db by imdbID
+                    Movie.findAll({
+                        where: {
+                            imdbID: req.params.imdbID
+                        }
+                    })
+                    .then(foundMovie => {
+                        // render
+                        res.render('movies/showMovie.ejs', {
+                            movie: foundMovie[0].dataValues
+                        });
+                    })
+                })
+                .catch (err => {
+                    console.log(err);
+                });
+            })
+            .catch (err => {
+                console.log(err);
+            });
+
+            // res.redirect('/movies');
         }
     })
     .catch (err => {
