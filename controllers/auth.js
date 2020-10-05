@@ -13,6 +13,9 @@ const renderSignUp = (req,res) => {
             genres: genres
         });
     })
+    .catch(err => {
+        console.log(err);
+    })
 }
 
 const renderLogIn = (req,res) => {
@@ -44,7 +47,10 @@ const signUpUser = (req,res) => {
                )
                res.cookie("jwt", token);
                console.log(token);
-               res.redirect(`/users/profile/${newUser.id}`);
+               res.redirect(`/users/profile`);
+           })
+           .catch(err => {
+               console.log(err);
            })
        })
     })

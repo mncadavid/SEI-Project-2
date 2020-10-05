@@ -17,6 +17,12 @@ const renderUserProfile = (req,res) => {
                 message: message
             })
         })
+        .catch(err => {
+            console.log(err);
+        })
+    })
+    .catch(err => {
+        console.log(err);
     })
 }
 const editUserProfile = (req,res) => {
@@ -27,6 +33,9 @@ const editUserProfile = (req,res) => {
     .then(updatedUser => {
         res.redirect(`/users/profile`);
     })
+    .catch(err => {
+        console.log(err);
+    })
 }
 
 const deleteUserProfile = (req, res) => {
@@ -35,6 +44,9 @@ const deleteUserProfile = (req, res) => {
     })
     .then(() => {
         res.redirect('/');
+    })
+    .catch(err => {
+        console.log(err);
     })
 }
 
@@ -65,6 +77,9 @@ const changeUserPassword = (req, res) => {
                                     message = "Password Updated Successfully"
                                     res.redirect(`/users/profile?message=${message}`);
                                 })
+                                .catch(err => {
+                                    console.log(err);
+                                })
                             })
                         })
                     }
@@ -80,6 +95,9 @@ const changeUserPassword = (req, res) => {
             })
         }
     )
+    .catch(err => {
+        console.log(err);
+    })
 
 }
 
