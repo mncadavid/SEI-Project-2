@@ -16,32 +16,39 @@ const renderMovieShowPage = (req, res) => {
         }
     })
     .then(foundMovie => {
-        console.log(foundMovie[0].dataValues);
-        res.render('movies/showMovie.ejs', {
-            movie: foundMovie[0].dataValues
-        });
-
         // found
-            // if incomplete data - director string empty
+        console.log(foundMovie);
+        if(foundMovie.length != 0) {
+            movieData = foundMovie[0].dataValues
+
+            if(movieData.Director && movieData.Plot) {
+                console.log('data complete');
+
+                res.render('movies/showMovie.ejs' , {
+                 movie: movieData    
+                })
+    
+            } else {
+                console.log('data incomplete');
+                // if incomplete data - director string empty
+
+                    // api call to get complete data
+                        // update movie entry
+                            // find movie in db by imdbID
+                                res.render('movies/showMovie.ejs', {
+                                    movie: movieData
+                                });
+
+            }
+        } else {
+            // not found
+            console.log('movie not found')
+            res.redirect('/movies');
                 // api call to get complete data
                     // update movie entry
                         // find movie in db by imdbID
                             // render
-
-            // if complete data    
-                // res.render('movies/showMovie.ejs' , {
-                //  foundMovie    
-                // })
-
-        // not found
-            // api call to get complete data
-                // update movie entry
-                    // find movie in db by imdbID
-                        // render
-
-
-
-
+        }
     })
     .catch (err => {
         console.log(err);

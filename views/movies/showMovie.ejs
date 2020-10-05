@@ -7,5 +7,12 @@
 </head>
 <body>
     <h1><%=movie.Title%></h1>
+
+    <img src="<%=movie.Poster%>" alt="">
+    <p><%=movie.Plot%></p>
+    <a href="https://www.imdb.com/title/<%=movie.imdbID%>/">
+        <%=movie.Title%> on IMDb
+    </a>
+
 </body>
 </html>
