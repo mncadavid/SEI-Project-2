@@ -1,5 +1,6 @@
 const Movie = require('../models').Movie;
 const Genre = require('../models').Genre;
+const MovieGenre = require('../models').MovieGenre;
 
 const axios = require('axios');
 const { Op } = require("sequelize");
@@ -35,24 +36,43 @@ const renderMovieShowPage = (req, res) => {
                     })
                     .then(updateMovie => {
                         genres = response.data.Genre.split(',');
-                        let userPromises = [];
-
+                        let userGenrePromises = [];
                         for( let i = 0 ; i < genres.length ; i++) {
-                            userPromises.push(Genre.upsert({
-                                genre: genres[i].split(" ").join("")
+                            genres[i] = genres[i].split(" ").join("");
+                            userGenrePromises.push(Genre.upsert({
+                                genre: genres[i]
                             }))
                         }
-    
-                        Promise.all(userPromises)
+                        Promise.all(userGenrePromises)
                         .then(addedGenres => {
                             console.log("Genres added");
                         })
+                        .catch(err => {
+                            console.log(err);
+                        })
+
                         Movie.findAll({
                             where: {
                                 imdbID: req.params.imdbID
                             }
                         })
                         .then(foundMovie => {
+                            for( let i=0; i<genres.length; i++){
+                                Genre.findAll({
+                                    where: {
+                                        genre: genres[i]
+                                    }
+                                })
+                                .then(foundGenre => {
+                                    MovieGenre.create({
+                                        movieId: foundMovie[0].id,
+                                        genreId: foundGenre[0].id
+                                        })
+                                })
+                                .catch(err => {
+                                    console.log(err);
+                                })
+                            }
                             res.render('movies/showMovie.ejs', {
                                 movie: foundMovie[0].dataValues
                             });
