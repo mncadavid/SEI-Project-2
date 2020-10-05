@@ -3,6 +3,7 @@ const User = require('../models').User;
 
 const axios = require('axios');
 const { Op } = require("sequelize");
+const { Sequelize } = require('../models');
 
 
 const renderSearchPage = (req, res) => {
@@ -39,30 +40,49 @@ const searchForMovie = (req, res) => {
                 // if found in api call add to db
                 if(foundMovies != undefined) {
                     // create call add short info from results to db
-                    for( let i = 0 ; i < foundMovies.length ; i++) {
-                        console.log('adding ' + foundMovies[i]);
-                        Movie.upsert(foundMovies[i])
-                        .then( insertedMovie => {
-                            console.log('added ' + foundMovies[i]);
+                        let userPromises = [];
+                        for( let i = 0 ; i < foundMovies.length ; i++) {
+                            console.log('adding ' + foundMovies[i].Title);
+                            userPromises.push(Movie.upsert(foundMovies[i]))
+                        }
 
-                            return
-                        })
-                        .catch( err => {
+                        console.log(userPromises);
+                        Promise.all(userPromises)
+                        .then(
+                            results => {
+                                console.log(results)
+                                Movie.findAll({
+                                    where: {
+                                        Title: {
+                                            [Op.iLike]: `%${req.body.title}%`
+                                        }  
+                                    }
+                                })
+                                .then( foundMoviesFromDb => {
+                                    console.log(foundMoviesFromDb[0]);
+            
+                                    // render page
+                                    if(foundMoviesFromDb) {
+                                        console.log('rendering movies from database');
+                                        res.render('movies/index.ejs', {
+                                            movies: foundMoviesFromDb
+                                        });
+                                    } else {
+                                        // if not found error has occurred
+                                        res.render('movies/index.ejs', {
+                                            message: "An error has occurred, please try again later."
+                                        });
+                                    }
+                                })
+                                .catch (err => {
+                                    console.log(err);
+                                })
+                            }
+                        )
+                        .catch (err => {
                             console.log(err);
-                        });
-                    }
-
+                        })
                     // then search for movies in movies table
-                        // if found
-                            // render page
-    
-                        // if not found error has occurred
-
-
-
-                    res.render('movies/index.ejs', {
-                        movies: foundMovies
-                    });
                 } else {
                     // return not found message
                     res.render('movies/index.ejs', {
