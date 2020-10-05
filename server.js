@@ -36,7 +36,7 @@ const verifyToken = (req, res, next) => {
 }
 
 // new routes
-app.use('/movies', routes.movies);
+app.use('/movies', verifyToken, routes.movies);
 app.use('/users', verifyToken, routes.users);
 app.use('/auth', routes.auth);
 

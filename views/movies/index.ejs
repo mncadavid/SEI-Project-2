@@ -6,9 +6,18 @@
     <title>Find a Flick!</title>
 </head>
 <body>
-    <h1>Search Page</h1>
+    <header>
+        <h1>Search Page</h1>
+
+        <nav>
+            <a href="/users">My Account</a>
+        </nav>
+    </header>
 
     <form action="/movies/search?_method=PUT" method="POST">
+        <% if(locals.message) { %>
+            <h2><%=message%></h2>
+        <% } %>
         <input type="text" name="title" id="" />
         <input type="submit" name="search" id="" />
     </form>
@@ -17,8 +26,10 @@
         <div class='search-results'>
             <ul>
                 <% for(let i = 0 ; i < movies.length ; i++ ) { %>
-                    <li>
-                        <h2><%=movies[i].Title%></h2>
+                    <li class='movie-list-item'>
+                        <a href="/movies/<%=movies[i].imdbID%>">
+                            <h2><%=movies[i].Title%></h2>
+                        </a>
                         <img src="<%=movies[i].Poster%>" alt="">
                         <p><%=movies[i].Plot%></p>
                         <a href="https://www.imdb.com/title/<%=movies[i].imdbID%>/">
