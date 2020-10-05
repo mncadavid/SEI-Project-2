@@ -23,12 +23,12 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Movie.init({
-    imdbId: DataTypes.STRING,
-    title: DataTypes.STRING,
-    img: DataTypes.STRING,
-    releaseYear: DataTypes.INTEGER,
-    director: DataTypes.STRING,
-    plot: DataTypes.STRING
+    imdbID: DataTypes.STRING,
+    Title: DataTypes.STRING,
+    Poster: DataTypes.STRING,
+    Year: DataTypes.STRING,
+    Director: DataTypes.STRING,
+    Plot: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Movie',

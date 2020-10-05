@@ -8,25 +8,25 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      imdbId: {
+      imdbID: {
         allowNull: false,
         type: Sequelize.STRING,
         unique: true
       },
-      title: {
+      Title: {
         type: Sequelize.STRING,
         allowNull: false
       },
-      img: {
+      Poster: {
         type: Sequelize.STRING
       },
-      releaseYear: {
-        type: Sequelize.INTEGER
-      },
-      director: {
+      Year: {
         type: Sequelize.STRING
       },
-      plot: {
+      Director: {
+        type: Sequelize.STRING
+      },
+      Plot: {
         type: Sequelize.STRING
       },
       createdAt: {
