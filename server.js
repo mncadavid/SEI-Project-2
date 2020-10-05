@@ -24,6 +24,11 @@ const verifyToken = (req, res, next) => {
 
     jwt.verify(token, process.env.JWT_SECRET, (err, decodedUser) => {
         if(err || !decodedUser) {
+            if(err.name == "JsonWebTokenError"){
+                return res.render('auth/login.ejs', {
+                    message: "Please Log In"
+                });
+            }
             return res.send(err);
         }
         req.user = decodedUser;

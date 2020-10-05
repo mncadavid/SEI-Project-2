@@ -39,17 +39,6 @@ const searchForMovie = (req, res) => {
 
         for( let i = 0 ; i < foundMovies.length ; i ++ ) {
             
-            /*
-                data fields returned do not match:
-                
-                Title: 'Ratatouille', => title
-                Year: '2007', => releaseYear string not integer
-                imdbID => imdbId
-                Poster => img
-
-                director and plot not returned unless movie queried directly
-            
-            */
         }
 
 

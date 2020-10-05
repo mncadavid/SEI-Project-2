@@ -71,7 +71,7 @@ const logInUser = (req,res) => {
                     )
                     console.log(token);
                     res.cookie("jwt",token);
-                    res.redirect(`/users/profile/${foundUser.id}`);
+                    res.redirect(`/movies`);
                 } else{
                     res.send('Incorrect Password');
                 }
@@ -90,10 +90,15 @@ const logInUser = (req,res) => {
     })
 }
 
+const logOutUser = (req, res) => {
+    res.cookie("jwt", "");
+    res.redirect('/auth/login');
+}
 
 module.exports ={
     renderSignUp,
     renderLogIn,
     signUpUser,
-    logInUser
+    logInUser,
+    logOutUser
 }
