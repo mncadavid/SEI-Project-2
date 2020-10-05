@@ -8,12 +8,28 @@
 <body>
     <h1>Search Page</h1>
 
-    <h2><%=movie.Title%></h2>
-    <img src="<%=movie.Poster%>" alt="">
-    <p><%=movie.Plot%></p>
-    <a href="https://www.imdb.com/title/<%=movie.imdbID%>/">
-        <%=movie.Title%> on IMDb
-    </a>
+    <form action="/movies/search?_method=PUT" method="POST">
+        <input type="text" name="title" id="" />
+        <input type="submit" name="search" id="" />
+    </form>
+
+    <% if(locals.movies) { %>
+        <div class='search-results'>
+            <ul>
+                <% for(let i = 0 ; i < movies.length ; i++ ) { %>
+                    <li>
+                        <h2><%=movies[i].Title%></h2>
+                        <img src="<%=movies[i].Poster%>" alt="">
+                        <p><%=movies[i].Plot%></p>
+                        <a href="https://www.imdb.com/title/<%=movies[i].imdbID%>/">
+                            <%=movies[i].Title%> on IMDb
+                        </a>
+                        
+                    </li>
+                <% } %>
+            </ul>
+        </div>
+    <% } %>
     
 </body>
 </html>
