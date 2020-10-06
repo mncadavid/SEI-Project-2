@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Lists</title>
     <link rel="stylesheet" href="/css/app.css">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -32,8 +33,8 @@
                             <h4><%=pickedMovies[i].Year%></h4>
                             <h4><%=pickedMovies[i].Director%></h4>
                             <p><%=pickedMovies[i].Plot%></p>
-                            <form class="mark-watched">
-                                <input type="submit" />
+                            <form class="mark-watched" action="/users/lists/markWatched?_method=PUT" method=POST>
+                                <button type="submit" name="Watched It!" value="<%=pickedMovies[i].imdbID%>"/>
                             </form>
                             <form class ="remove-from-list" action='/users/lists/delete?_method=DELETE' method=POST>
                                 <input type="submit" value="<%=pickedMovies[i].imdbID%>" />
@@ -60,8 +61,14 @@
                             <h4><%=watchedMovies[i].Year%></h4>
                             <h4><%=watchedMovies[i].Director%></h4>
                             <p><%=watchedMovies[i].Plot%></p>
-                            <form class="mark-favorited">
-                                &star;
+                            <form class="mark-favorited" action="/users/lists/markFavorited?_method=PUT" method=POST>
+                                <label for="id-of-input" class="custom-checkbox"> 
+                                    <!-- ToDo -->
+                                    <input onChange="this.form.submit()" type="checkbox" id="id-of-input"/>
+                                    <i class="glyphicon glyphicon-star-empty"></i>
+                                    <i class="glyphicon glyphicon-star"></i>
+                                    <span>Loved It!</span>
+                                </label>
                             </form>
                             <form class="remove-from-list" action='/users/lists/delete?_method=DELETE' method=POST>
                                 <input type="submit" value="<%=watchedMovies[i].imdbID%>" />
