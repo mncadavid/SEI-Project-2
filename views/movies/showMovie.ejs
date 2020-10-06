@@ -26,6 +26,18 @@
         <p><%=movie.Director%></p>
         <p></p>
         <p><%=movie.Plot%></p>
+
+        <form class="add-pick-list" action='/users/lists/addUserMovie' method=POST>
+            <input name='haveSeen' value='false' type="hidden">
+            <input name='favorite' value='false' type="hidden">
+            <button name='imdbId' type="submit" value="<%=movie.imdbID%>">Pick It!</button>
+        </form>
+        <form class="add-watch-list" action='/users/lists/addUserMovie' method=POST>
+            <input name='haveSeen' value='true' type="hidden">
+            <input name='favorite' value='false' type="hidden">
+            <button name='imdbId' type="submit" value="<%=movie.imdbID%>">Seen It!</button>
+        </form>
+
         <a href="https://www.imdb.com/title/<%=movie.imdbID%>/">
             <%=movie.Title%> on IMDb
         </a>

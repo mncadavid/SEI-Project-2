@@ -2,6 +2,8 @@ const bcrypt = require('bcryptjs');
 
 const User = require('../models').User;
 const Genre = require('../models').Genre;
+const Movie = require('../models').Movie;
+const UserMovie = require('../models').UserMovie;
 
 
 const renderUserProfile = (req,res) => {
@@ -25,6 +27,70 @@ const renderUserProfile = (req,res) => {
         console.log(err);
     })
 }
+
+const renderUserLists = (req,res) => {
+    User.findByPk(req.user.id, {
+        include: [
+            {
+                model: Movie,
+                attributes: ['imdbID', 'Title', 'Poster', 'Year', 'Director', 'Plot'],
+                include: [{
+                    model: Genre,
+                    attributes: ['genre'] 
+                }]
+            }
+        ],
+        attributes: ['username']
+    })
+    .then(foundUser => {
+        const pickedList = [];
+        const watchedList = [];
+        for(let i =0; i<foundUser.Movies.length; i++){
+            if(foundUser.Movies[i].UserMovie.haveSeen){
+                watchedList.push(foundUser.Movies[i]);
+            }
+            else{
+                pickedList.push(foundUser.Movies[i]);
+            }
+        }
+        res.render("users/lists.ejs", {
+            pickedMovies: pickedList,
+            watchedMovies: watchedList
+        });
+    })
+    .catch(err => {
+        console.log(err);
+    })
+}
+
+const addUserMovie = (req, res) => {
+    Movie.findAll({
+        where: {
+            imdbID: req.body.imdbId
+        },
+        attributes: ['id']
+    })
+    .then(foundMovie => {
+        UserMovie.create({
+            userId: req.user.id,
+            movieId: foundMovie[0].id,
+            haveSeen: req.body.haveSeen,
+            favorite: req.body.favorite
+        })
+        .then(returnedUserMovie => {
+            res.redirect(`/movies/${req.body.imdbId}`);
+        })
+        .catch(err => {
+            console.log(err);
+        })
+    })
+    .catch(err => {
+        console.log(err);
+    })
+}
+
+
+
 const editUserProfile = (req,res) => {
     User.update(req.body, {
         where: {id: req.user.id},
@@ -32,18 +98,6 @@ const editUserProfile = (req,res) => {
     })
     .then(updatedUser => {
         res.redirect(`/users/profile`);
-    })
-    .catch(err => {
-        console.log(err);
-    })
-}
-
-const deleteUserProfile = (req, res) => {
-    User.destroy({
-        where: {id: req.user.id}
-    })
-    .then(() => {
-        res.redirect('/');
     })
     .catch(err => {
         console.log(err);
@@ -101,9 +155,140 @@ const changeUserPassword = (req, res) => {
 
 }
 
+const markMovieFavorite = (req, res) => {
+    User.findByPk(req.user.id, {
+        include: [
+            {
+                model: Movie,
+                attributes: ['id','imdbID'],
+                where: {
+                    imdbID: req.body.imdbId
+                }
+            }
+        ],
+        attributes: ['id','username']
+    })
+    .then(foundUser => {
+        let favorited;
+        if(foundUser.Movies[0].UserMovie.favorite){
+            favorited = {
+                favorite: 'false'
+            }
+        }
+        else{
+            favorited = {
+                favorite: 'true'
+            }
+        }
+        UserMovie.update(favorited, {
+            where: {
+                userId: foundUser.id,
+                movieId: foundUser.Movies[0].id
+            },
+            returning: true
+        })
+        .then(updatedUserMovie => {
+            res.redirect('/users/lists');
+        })
+        .catch(err => {
+            console.log(err);
+        })
+    })
+    .catch(err => {
+        console.log(err);
+    })
+}
+
+const changeMovieList = (req, res) => {
+    console.log(req.body);
+    User.findByPk(req.user.id, {
+        include: [
+            {
+                model: Movie,
+                attributes: ['id','imdbID'],
+                where: {
+                    imdbID: req.body.imdbId
+                }
+            }
+        ],
+        attributes: ['id','username']
+    })
+    .then(foundUser => {
+        let haveSeen;
+        if(foundUser.Movies[0].UserMovie.haveSeen){
+            haveSeen = {
+                haveSeen: 'false'
+            }
+        }
+        else{
+            haveSeen = {
+                haveSeen: 'true'
+            }
+        }
+        UserMovie.update(haveSeen, {
+            where: {
+                userId: foundUser.id,
+                movieId: foundUser.Movies[0].id
+            },
+            returning: true
+        })
+        .then(updatedUserMovie => {
+            res.redirect('/users/lists');
+        })
+        .catch(err => {
+            console.log(err);
+        })
+    })
+    .catch(err => {
+        console.log(err);
+    })
+}
+
+const deleteUserProfile = (req, res) => {
+    User.destroy({
+        where: {id: req.user.id}
+    })
+    .then(() => {
+        res.redirect('/');
+    })
+    .catch(err => {
+        console.log(err);
+    })
+}
+
+const deleteUserMovie = (req, res) => {
+    Movie.findAll({
+        where: {imdbID: req.body.imdbId},
+        attributes: ['id']
+    })
+    .then(foundMovie => {
+        UserMovie.destroy({
+            where: {
+                movieId: foundMovie[0].id,
+                userId: req.user.id
+            }
+        })
+        .then(() => {
+            res.redirect('/users/lists');
+        })
+        .catch(err => {
+            console.log(err);
+        });
+    })
+    .catch(err => {
+        console.log(err);
+    });
+}
+
+
 module.exports = {
     renderUserProfile,
+    renderUserLists,
+    addUserMovie,
     editUserProfile,
+    changeUserPassword,
+    markMovieFavorite,
+    changeMovieList,
     deleteUserProfile,
-    changeUserPassword
+    deleteUserMovie
 }
