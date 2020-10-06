@@ -21,13 +21,13 @@
             <h2>Picked List</h2>
             <ul>
                 <% for(let i=0; i<pickedMovies.length; i++){%>
-                    <li>
-                        <div class="picked-movie-data">
-                            <img src="<%=pickedMovies[i].Poster%>" alt="<%=pickedMovies[i].Poster%>" />
+                    <li class="movie-list-item">
+                        <div class="movie-list-data">
+                            <img class ="thumbnail" src="<%=pickedMovies[i].Poster%>" alt="<%=pickedMovies[i].Poster%>" />
                             <h3><%=pickedMovies[i].Title%></h3>
                             <h4>
-                                <% for(let j = 0; j<pickedMoviesGenres[i].length; j++){%>
-                                    <%=pickedMoviesGenres[i][j]%> 
+                                <% for(let j = 0; j<pickedMovies[i].Genres.length; j++){%>
+                                    <%=pickedMovies[i].Genres[j].genre%> 
                                 <%}%>
                             </h4>
                             <h4><%=pickedMovies[i].Year%></h4>
@@ -37,7 +37,7 @@
                                 <button type="submit" name="Watched It!" value="<%=pickedMovies[i].imdbID%>"/>
                             </form>
                             <form class ="remove-from-list" action='/users/lists/delete?_method=DELETE' method=POST>
-                                <input type="submit" value="<%=pickedMovies[i].imdbID%>" />
+                                <button type="submit" name="Ditch It!" value="<%=pickedMovies[i].imdbID%>" />
                             </form>
                         </div>
                     </li>
@@ -49,13 +49,13 @@
             <h2>Watched List</h2>
             <ul>
                 <% for(let i=0; i<watchedMovies.length; i++){%>
-                    <li>
-                        <div class="watched-movie-data">
-                            <img src="<%=watchedMovies[i].Poster%>" alt="<%=watchedMovies[i].Poster%>" />
+                    <li class="movie-list-item">
+                        <div class="movie-list-data">
+                            <img class="thumbnail" src="<%=watchedMovies[i].Poster%>" alt="<%=watchedMovies[i].Poster%>" />
                             <h3><%=watchedMovies[i].Title%></h3>
                             <h4>
-                                <% for(let j = 0; j<watchedMoviesGenres[i].length; j++){%>
-                                    <%=watchedMoviesGenres[i][j]%> 
+                                <% for(let j = 0; j<watchedMovies[i].Genres.length; j++){%>
+                                    <%=watchedMovies[i].Genres[j].genre%> 
                                 <%}%>
                             </h4>
                             <h4><%=watchedMovies[i].Year%></h4>
@@ -71,7 +71,7 @@
                                 </label>
                             </form>
                             <form class="remove-from-list" action='/users/lists/delete?_method=DELETE' method=POST>
-                                <input type="submit" value="<%=watchedMovies[i].imdbID%>" />
+                                <button name="Ditch It!" type="submit" value="<%=watchedMovies[i].imdbID%>" />
                             </form>
                         </div>
                     </li>

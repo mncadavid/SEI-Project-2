@@ -11,5 +11,7 @@ router.delete('/profile/delete', ctrl.users.deleteUserProfile);
 
 router.put('/profile/changePassword', ctrl.users.changeUserPassword);
 
+router.get('/lists', ctrl.users.renderUserLists);
+
 
 module.exports = router;
