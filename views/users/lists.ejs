@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Lists</title>
+    <link rel="stylesheet" href="/css/app.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/movies">Pick a Flick!</a>
+            <a href="/users/lists">My Lists</a>
+            <a href="/users/profile">My Account</a>
+            <a href="/auth/logout">Sign out</a>
+        </nav>
+    </header>
+    <div class='content-box'>
+        <div class="picked-list">
+            <h2>Picked List</h2>
+            <ul>
+                <% for(let i=0; i<pickedMovies.length; i++){%>
+                    <li>
+                        <div class="picked-movie-data">
+                            <img src="<%=pickedMovies[i].Poster%>" alt="<%=pickedMovies[i].Poster%>" />
+                            <h3><%=pickedMovies[i].Title%></h3>
+                            <h4>
+                                <% for(let j = 0; j<pickedMoviesGenres[i].length; j++){%>
+                                    <%=pickedMoviesGenres[i][j]%> 
+                                <%}%>
+                            </h4>
+                            <h4><%=pickedMovies[i].Year%></h4>
+                            <h4><%=pickedMovies[i].Director%></h4>
+                            <p><%=pickedMovies[i].Plot%></p>
+                            <form class="mark-watched">
+                                <input type="submit" />
+                            </form>
+                            <form class ="remove-from-list" action='/users/lists/delete?_method=DELETE' method=POST>
+                                <input type="submit" value="<%=pickedMovies[i].imdbID%>" />
+                            </form>
+                        </div>
+                    </li>
+                <%}%>
+
+            </ul>
+        </div>
+        <div class="watched-list">
+            <h2>Watched List</h2>
+            <ul>
+                <% for(let i=0; i<watchedMovies.length; i++){%>
+                    <li>
+                        <div class="watched-movie-data">
+                            <img src="<%=watchedMovies[i].Poster%>" alt="<%=watchedMovies[i].Poster%>" />
+                            <h3><%=watchedMovies[i].Title%></h3>
+                            <h4>
+                                <% for(let j = 0; j<watchedMoviesGenres[i].length; j++){%>
+                                    <%=watchedMoviesGenres[i][j]%> 
+                                <%}%>
+                            </h4>
+                            <h4><%=watchedMovies[i].Year%></h4>
+                            <h4><%=watchedMovies[i].Director%></h4>
+                            <p><%=watchedMovies[i].Plot%></p>
+                            <form>
+
+                            </form>
+                            <form class="remove-from-list" action='/users/lists/delete?_method=DELETE' method=POST>
+                                <input type="submit" value="<%=watchedMovies[i].imdbID%>" />
+                            </form>
+                        </div>
+                    </li>
+                <%}%>
+            </ul>
+        </div>
+    
+    </div>
+
+    <footer>
+        <p>
+            Created by 
+            <a href="#">
+                Chris Myers
+            </a> and 
+            <a href="#">
+                Marissa Cadavid
+            </a>
+        </p>
+    </footer>
+    
+</body>
+</html>
