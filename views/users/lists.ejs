@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Lists</title>
     <link rel="stylesheet" href="/css/app.css">
+
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+
 </head>
 <body>
     <header>
@@ -16,6 +18,7 @@
             <a href="/auth/logout">Sign out</a>
         </nav>
     </header>
+
     <div class='content-box'>
         <div class="picked-list">
             <h2>Picked List</h2>
@@ -52,7 +55,9 @@
                     <li class="movie-list-item">
                         <div class="movie-list-data">
                             <img class="thumbnail" src="<%=watchedMovies[i].Poster%>" alt="<%=watchedMovies[i].Poster%>" />
-                            <h3><%=watchedMovies[i].Title%></h3>
+                            <h3>
+                                <a href="/movies/<%=watchedMovies[i].imdbID%>"><%=watchedMovies[i].Title%></a>
+                            </h3>
                             <h4>
                                 <% for(let j = 0; j<watchedMovies[i].Genres.length; j++){%>
                                     <%=watchedMovies[i].Genres[j].genre%> 
@@ -62,17 +67,11 @@
                             <h4><%=watchedMovies[i].Director%></h4>
                             <p><%=watchedMovies[i].Plot%></p>
                             <form class="mark-favorited" action="/users/lists/markMovieFavorite?_method=PUT" method=POST>
-                                <label for="id-of-input" class="custom-checkbox"> 
-                                    <!-- ToDo -->
+                                <button name='imdbId' value='<%=watchedMovies[i].imdbID%>' type='submit' class="favorite-button glyphicon glyphicon-star" 
                                     <% if(watchedMovies[i].UserMovie.favorite) { %>
-                                        <input name ="imdbId" value="<%=watchedMovies[i].imdbID%>" onChange="this.form.submit()" type="checkbox" id="id-of-input" checked/>
-                                    <% } else { %>
-                                        <input name ="imdbId" value="<%=watchedMovies[i].imdbID%>" onChange="this.form.submit()" type="checkbox" id="id-of-input"/>
+                                        style="color:gold" 
                                     <% } %>
-                                    <i class="glyphicon glyphicon-star-empty"></i>
-                                    <i class="glyphicon glyphicon-star"></i>
-                                    <span>Loved It!</span>
-                                </label>
+                                ></button>
                             </form>
                             <form class="remove-from-list" action='/users/lists/delete?_method=DELETE' method=POST>
                                 <button name="Ditch It!" type="submit" value="<%=watchedMovies[i].imdbID%>" />
@@ -82,7 +81,6 @@
                 <%}%>
             </ul>
         </div>
-    
     </div>
 
     <footer>

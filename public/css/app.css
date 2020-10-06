@@ -112,7 +112,6 @@ footer {
 }
 
 /* list page styling */
-/* Required Styling */
 
 label input[type="checkbox"] {
     display: none;
@@ -145,3 +144,11 @@ label input[type="checkbox"] {
 .custom-checkbox input[type="checkbox"]:checked ~ .glyphicon-star {
     opacity: 1;
 }
+
+.favorite-button {
+    background: none;
+    border: none;
+    padding: 0;
+    color: gray;
+    cursor: pointer;
+  }

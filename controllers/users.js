@@ -54,7 +54,6 @@ const renderUserLists = (req,res) => {
                 pickedList.push(foundUser.Movies[i]);
             }
         }
-        console.log(watchedList);
         res.render("users/lists.ejs", {
             pickedMovies: pickedList,
             watchedMovies: watchedList
@@ -136,6 +135,7 @@ const changeUserPassword = (req, res) => {
 }
 
 const markMovieFavorite = (req, res) => {
+    console.log(req.body);
     User.findByPk(req.user.id, {
         include: [
             {
