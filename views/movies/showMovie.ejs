@@ -6,6 +6,8 @@
     <title><%=movie.Title%></title>
 
     <link rel="stylesheet" href="/css/app.css">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+
 
 </head>
 <body>
@@ -22,9 +24,18 @@
         <h1><%=movie.Title%></h1>
     
         <img class='poster' src="<%=movie.Poster%>" alt="">
+        <h4>
+            <% for(let i = 0; i<movie.Genres.length; i++) { %>
+                <%=movie.Genres[i].genre%> 
+            <% } %>
+        </h4>
         <p><%=movie.Year%></p>
-        <p><%=movie.Director%></p>
-        <p></p>
+        <p>Rated <%=movie.Rated%> runtime <%=movie.Runtime%></p>
+        <p>Directed by:<%=movie.Director%></p>
+        <p>Written by:<%=movie.Writer%></p>
+        <p>Actors: <%=movie.Actors%></p>
+        <p>Metascore <%=movie.Metascore%></p>
+        <p>IMDb Rating <%=movie.imdbRating%></p>
         <p><%=movie.Plot%></p>
 
         <form class="add-pick-list" action='/users/lists/addUserMovie' method=POST>

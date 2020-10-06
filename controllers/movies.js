@@ -13,8 +13,12 @@ const renderSearchPage = (req, res) => {
 const renderMovieShowPage = (req, res) => {
     Movie.findAll({
         where: {
-            imdbID: req.params.imdbID
-        }
+            imdbID: req.params.imdbID,
+        },
+        include: [{
+            model: Genre,
+            attributes: ['genre'] 
+        }]
     })
     .then(foundMovie => {
         if(foundMovie.length != 0) {
@@ -22,7 +26,7 @@ const renderMovieShowPage = (req, res) => {
 
             if(movieData.Director && movieData.Plot) {
                 res.render('movies/showMovie.ejs' , {
-                 movie: movieData    
+                    movie: movieData    
                 })
             } else {
                 axios({
@@ -80,6 +84,9 @@ const renderMovieShowPage = (req, res) => {
                                     console.log(err);
                                 })
                             }
+
+                            //todo page renders before genres are found causing error when initially loading
+
                             res.render('movies/showMovie.ejs', {
                                 movie: foundMovie[0].dataValues
                             });
@@ -134,11 +141,16 @@ const searchForMovie = (req, res) => {
         where: {
             Title: {
                 [Op.iLike]: `%${req.body.title}%`
-            }  
-        }
+            }
+        },
+        include: [{
+            model: Genre,
+            attributes: ['genre'] 
+        }]
     })
     .then( movies => {
         if(movies.length != 0) {
+            console.log(movies[0]);
             res.render('movies/index.ejs', {
                 movies: movies
             });
