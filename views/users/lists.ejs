@@ -42,7 +42,7 @@
                                 <button name='imdbId' type="submit" value="<%=pickedMovies[i].imdbID%>">Watched It!</button>
                             </form>
                             <form class ="remove-from-list" action='/users/lists/delete?_method=DELETE' method=POST>
-                                <button type="submit" name="Ditch It!" value="<%=pickedMovies[i].imdbID%>" />
+                                <button name='imdbId' type="submit" value="<%=pickedMovies[i].imdbID%>">Ditch It!</button>
                             </form>
                         </div>
                     </li>
@@ -79,7 +79,7 @@
                                 <button name='imdbId' type="submit" value="<%=watchedMovies[i].imdbID%>">Didn't see it?</button>
                             </form>
                             <form class="remove-from-list" action='/users/lists/delete?_method=DELETE' method=POST>
-                                <button name="Ditch It!" type="submit" value="<%=watchedMovies[i].imdbID%>" />
+                                <button name='imdbId' type="submit" value="<%=watchedMovies[i].imdbID%>">Ditch It!</button>
                             </form>
                         </div>
                     </li>

@@ -236,7 +236,27 @@ const deleteUserProfile = (req, res) => {
 }
 
 const deleteUserMovie = (req, res) => {
-
+    Movie.findAll({
+        where: {imdbID: req.body.imdbId},
+        attributes: ['id']
+    })
+    .then(foundMovie => {
+        UserMovie.destroy({
+            where: {
+                movieId: foundMovie[0].id,
+                userId: req.user.id
+            }
+        })
+        .then(() => {
+            res.redirect('/users/lists');
+        })
+        .catch(err => {
+            console.log(err);
+        });
+    })
+    .catch(err => {
+        console.log(err);
+    });
 }
 
 
