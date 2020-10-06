@@ -54,6 +54,7 @@ const renderUserLists = (req,res) => {
                 pickedList.push(foundUser.Movies[i]);
             }
         }
+        console.log(watchedList);
         res.render("users/lists.ejs", {
             pickedMovies: pickedList,
             watchedMovies: watchedList

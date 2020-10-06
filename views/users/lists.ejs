@@ -64,7 +64,11 @@
                             <form class="mark-favorited" action="/users/lists/markMovieFavorite?_method=PUT" method=POST>
                                 <label for="id-of-input" class="custom-checkbox"> 
                                     <!-- ToDo -->
-                                    <input name ="imdbId" value="<%=watchedMovies[i].imdbID%>" onChange="this.form.submit()" type="checkbox" id="id-of-input"/>
+                                    <% if(watchedMovies[i].UserMovie.favorite) { %>
+                                        <input name ="imdbId" value="<%=watchedMovies[i].imdbID%>" onChange="this.form.submit()" type="checkbox" id="id-of-input" checked/>
+                                    <% } else { %>
+                                        <input name ="imdbId" value="<%=watchedMovies[i].imdbID%>" onChange="this.form.submit()" type="checkbox" id="id-of-input"/>
+                                    <% } %>
                                     <i class="glyphicon glyphicon-star-empty"></i>
                                     <i class="glyphicon glyphicon-star"></i>
                                     <span>Loved It!</span>
