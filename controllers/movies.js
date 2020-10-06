@@ -49,7 +49,7 @@ const renderMovieShowPage = (req, res) => {
                             console.log("Genres added");
                         })
                         .catch(err => {
-                            console.log(err);
+                            console.log(err.name);
                         })
 
                         Movie.findAll({
@@ -70,9 +70,7 @@ const renderMovieShowPage = (req, res) => {
                                         genreId: foundGenre[0].id
                                     })
                                     .then(createdMovieGenre => {
-                                        res.render('movies/showMovie.ejs', {
-                                            movie: foundMovie[0].dataValues
-                                        });
+
                                     })
                                     .catch(err => {
                                         console.log(err);
