@@ -6,7 +6,6 @@ body {
     flex-flow: column wrap;
     justify-content: center;
     background-color: #FFFCF2;
-    
 }
 
 header {
@@ -46,8 +45,20 @@ footer {
 
 /* login page styling */
 
+/* .auth-body{
+    background-image: url("cinema.jpg");
+    background-size: cover;
+} */
+
 .login-box {
-    padding: 10px;
+    padding: 20px;
+}
+
+.login-content{
+    display: flex;
+    align-items: center;
+    flex-flow: row wrap;
+    min-height: 500px;
 }
 
 
@@ -112,38 +123,6 @@ footer {
 }
 
 /* list page styling */
-
-label input[type="checkbox"] {
-    display: none;
-}
-  
-.custom-checkbox {
-    margin-left: 2em;
-    position: relative;
-    cursor: pointer;
-}
-  
-.custom-checkbox .glyphicon {
-    color: gold;
-    font-size: 0.75em;
-}
-  
-.custom-checkbox .glyphicon-star-empty {
-    color: gray;
-}
-  
-.custom-checkbox .glyphicon-star {
-    opacity: 0;
-    transition: opacity 0.2s ease-in-out;
-}
-  
-.custom-checkbox:hover .glyphicon-star{
-    opacity: 0.5;
-}
-  
-.custom-checkbox input[type="checkbox"]:checked ~ .glyphicon-star {
-    opacity: 1;
-}
 
 .favorite-button {
     background: none;
