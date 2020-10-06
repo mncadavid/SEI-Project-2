@@ -135,7 +135,6 @@ const changeUserPassword = (req, res) => {
 }
 
 const markMovieFavorite = (req, res) => {
-    console.log(req.body);
     User.findByPk(req.user.id, {
         include: [
             {
@@ -168,7 +167,6 @@ const markMovieFavorite = (req, res) => {
             returning: true
         })
         .then(updatedUserMovie => {
-            console.log("Favorited");
             res.redirect('/users/lists');
         })
         .catch(err => {
@@ -181,7 +179,48 @@ const markMovieFavorite = (req, res) => {
 }
 
 const changeMovieList = (req, res) => {
-
+    console.log(req.body);
+    User.findByPk(req.user.id, {
+        include: [
+            {
+                model: Movie,
+                attributes: ['id','imdbID'],
+                where: {
+                    imdbID: req.body.imdbId
+                }
+            }
+        ],
+        attributes: ['id','username']
+    })
+    .then(foundUser => {
+        let haveSeen;
+        if(foundUser.Movies[0].UserMovie.haveSeen){
+            haveSeen = {
+                haveSeen: 'false'
+            }
+        }
+        else{
+            haveSeen = {
+                haveSeen: 'true'
+            }
+        }
+        UserMovie.update(haveSeen, {
+            where: {
+                userId: foundUser.id,
+                movieId: foundUser.Movies[0].id
+            },
+            returning: true
+        })
+        .then(updatedUserMovie => {
+            res.redirect('/users/lists');
+        })
+        .catch(err => {
+            console.log(err);
+        })
+    })
+    .catch(err => {
+        console.log(err);
+    })
 }
 
 const deleteUserProfile = (req, res) => {

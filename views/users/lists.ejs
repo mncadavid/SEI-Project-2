@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Lists</title>
-    <link rel="stylesheet" href="/css/app.css">
+    <!-- <link rel="stylesheet" href="/css/app.css"> -->
 
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
 
@@ -27,7 +27,9 @@
                     <li class="movie-list-item">
                         <div class="movie-list-data">
                             <img class ="thumbnail" src="<%=pickedMovies[i].Poster%>" alt="<%=pickedMovies[i].Poster%>" />
-                            <h3><%=pickedMovies[i].Title%></h3>
+                            <h3>
+                                <a href="/movies/<%=pickedMovies[i].imdbID%>"><%=pickedMovies[i].Title%></a>
+                            </h3>
                             <h4>
                                 <% for(let j = 0; j<pickedMovies[i].Genres.length; j++){%>
                                     <%=pickedMovies[i].Genres[j].genre%> 
@@ -36,8 +38,8 @@
                             <h4><%=pickedMovies[i].Year%></h4>
                             <h4><%=pickedMovies[i].Director%></h4>
                             <p><%=pickedMovies[i].Plot%></p>
-                            <form class="mark-watched" action="/users/lists/markWatched?_method=PUT" method=POST>
-                                <button type="submit" name="Watched It!" value="<%=pickedMovies[i].imdbID%>"/>
+                            <form class="change-movie-list" action="/users/lists/changeMovieList?_method=PUT" method=POST>
+                                <button name='imdbId' type="submit" value="<%=pickedMovies[i].imdbID%>">Watched It!</button>
                             </form>
                             <form class ="remove-from-list" action='/users/lists/delete?_method=DELETE' method=POST>
                                 <button type="submit" name="Ditch It!" value="<%=pickedMovies[i].imdbID%>" />
@@ -72,6 +74,9 @@
                                         style="color:gold" 
                                     <% } %>
                                 ></button>
+                            </form>
+                            <form class="change-movie-list" action="/users/lists/changeMovieList?_method=PUT" method=POST>
+                                <button name='imdbId' type="submit" value="<%=watchedMovies[i].imdbID%>">Didn't see it?</button>
                             </form>
                             <form class="remove-from-list" action='/users/lists/delete?_method=DELETE' method=POST>
                                 <button name="Ditch It!" type="submit" value="<%=watchedMovies[i].imdbID%>" />
