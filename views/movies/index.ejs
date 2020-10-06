@@ -45,6 +45,17 @@
                                 <a href="https://www.imdb.com/title/<%=movies[i].imdbID%>/">
                                     <%=movies[i].Title%> on IMDb
                                 </a>
+
+                                <form class="add-pick-list" action='/users/lists/addUserMovie' method=POST>
+                                    <input name='haveSeen' value='false' type="hidden">
+                                    <input name='favorite' value='false' type="hidden">
+                                    <button name='imdbId' type="submit" value="<%=movies[i].imdbID%>">Pick It!</button>
+                                </form>
+                                <form class="add-watch-list" action='/users/lists/addUserMovie' method=POST>
+                                    <input name='haveSeen' value='true' type="hidden">
+                                    <input name='favorite' value='false' type="hidden">
+                                    <button name='imdbId' type="submit" value="<%=movies[i].imdbID%>">Seen It!</button>
+                                </form>
                             </div>
                         </li>
                     <% } %>

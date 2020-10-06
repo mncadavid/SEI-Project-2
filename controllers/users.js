@@ -1,5 +1,4 @@
 const bcrypt = require('bcryptjs');
-const movies = require('./movies');
 
 const User = require('../models').User;
 const Genre = require('../models').Genre;
@@ -65,7 +64,29 @@ const renderUserLists = (req,res) => {
 }
 
 const addUserMovie = (req, res) => {
-
+    Movie.findAll({
+        where: {
+            imdbID: req.body.imdbId
+        },
+        attributes: ['id']
+    })
+    .then(foundMovie => {
+        UserMovie.create({
+            userId: req.user.id,
+            movieId: foundMovie[0].id,
+            haveSeen: req.body.haveSeen,
+            favorite: req.body.favorite
+        })
+        .then(returnedUserMovie => {
+            res.redirect(`/movies/${req.body.imdbId}`);
+        })
+        .catch(err => {
+            console.log(err);
+        })
+    })
+    .catch(err => {
+        console.log(err);
+    })
 }
 
 
