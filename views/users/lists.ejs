@@ -60,8 +60,8 @@
                             <h4><%=watchedMovies[i].Year%></h4>
                             <h4><%=watchedMovies[i].Director%></h4>
                             <p><%=watchedMovies[i].Plot%></p>
-                            <form>
-
+                            <form class="mark-favorited">
+                                &star;
                             </form>
                             <form class="remove-from-list" action='/users/lists/delete?_method=DELETE' method=POST>
                                 <input type="submit" value="<%=watchedMovies[i].imdbID%>" />
