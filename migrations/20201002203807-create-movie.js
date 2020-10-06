@@ -27,6 +27,24 @@ module.exports = {
         type: Sequelize.STRING
       },
       Plot: {
+        type: Sequelize.TEXT
+      },
+      Rated: {
+        type: Sequelize.STRING
+      },
+      Runtime: {
+        type: Sequelize.STRING
+      },
+      Writer: {
+        type: Sequelize.STRING
+      },
+      Actors: {
+        type: Sequelize.STRING
+      },
+      Metascore: {
+        type: Sequelize.STRING
+      },
+      imdbRating: {
         type: Sequelize.STRING
       },
       createdAt: {

@@ -26,10 +26,11 @@ const renderMovieShowPage = (req, res) => {
                 })
             } else {
                 axios({
-                    url: `http://www.omdbapi.com/?i=${req.params.imdbID}&type=movie&apikey=${process.env.OMDB_API_KEY}`,
+                    url: `http://www.omdbapi.com/?i=${req.params.imdbID}&plot=full&type=movie&apikey=${process.env.OMDB_API_KEY}`,
                     method: 'get'
                 })
                 .then(response => {
+                    console.log(response.data);
                     Movie.update(response.data, {
                         where: {imdbID: req.params.imdbID},
                         returning: true
@@ -67,7 +68,15 @@ const renderMovieShowPage = (req, res) => {
                                     MovieGenre.create({
                                         movieId: foundMovie[0].id,
                                         genreId: foundGenre[0].id
-                                        })
+                                    })
+                                    .then(createdMovieGenre => {
+                                        res.render('movies/showMovie.ejs', {
+                                            movie: foundMovie[0].dataValues
+                                        });
+                                    })
+                                    .catch(err => {
+                                        console.log(err);
+                                    })
                                 })
                                 .catch(err => {
                                     console.log(err);
