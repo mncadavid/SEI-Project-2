@@ -9,7 +9,6 @@ body {
 }
 
 header {
-    /* background-color: #252422; */
     background-color: black;
     color: #FFFCF2;
     height: 15vh;
@@ -50,12 +49,17 @@ h1 {
 
 
 footer {
-    /* background-color: #252422; */
     background-color: black;
     color: #FFFCF2;
     width: 100%;
     text-align: center;
     height: 8vh;
+    text-decoration: none;
+    padding: 3vh;
+}
+
+footer a{
+    color: #BFBFBF;
 }
 
 .error-message {
@@ -121,6 +125,7 @@ footer {
     background-color: black;
     padding: 20px;
     border-radius: 10px;
+    height: 555px;
 }
 /* sign up styling */
 
