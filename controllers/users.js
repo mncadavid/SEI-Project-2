@@ -63,6 +63,48 @@ const renderUserLists = (req,res) => {
     })
 }
 
+const renderUserListsFiltered = (req, res) => {
+    User.findByPk(req.user.id, {
+        include: [
+            {
+                model: Movie,
+                attributes: ['imdbID', 'Title', 'Poster', 'Year', 'Director', 'Plot'],
+                include: [{
+                    model: Genre,
+                    attributes: ['genre'] 
+                }]
+            }
+        ],
+        attributes: ['username']
+    })
+    .then(foundUser => {
+        const pickedList = [];
+        const watchedList = [];
+        for(let i =0; i<foundUser.Movies.length; i++){
+            if(foundUser.Movies[i].UserMovie.haveSeen){
+                // for(let j = 0 ; j < foundUser.Movies[i].Genres.length ; j++) {
+                    // if(foundUser.Movies[i].Genres[j].genre == 'Comedy') {
+                        watchedList.push(foundUser.Movies[i]);
+                    // }
+                // }
+            } else {
+                // for(let j = 0 ; j < foundUser.Movies[i].Genres.length ; j++) {
+                    // if(foundUser.Movies[i].Genres[j].genre == 'Comedy') {
+                        pickedList.push(foundUser.Movies[i]);
+                    // }
+                // }
+            }
+        }
+        res.render("users/lists.ejs", {
+            pickedMovies: pickedList,
+            watchedMovies: watchedList
+        });
+    })
+    .catch(err => {
+        console.log(err);
+    })
+}
+
 const addUserMovie = (req, res) => {
     Movie.findAll({
         where: {
@@ -124,7 +166,6 @@ const changeUserPassword = (req, res) => {
                                     return res.send(err);
                                 }
                                 req.body.password = hashedPwd;
-                                console.log(hashedPwd);
                                 User.update({
                                     password: `${hashedPwd}`
                                 }, {
@@ -204,7 +245,6 @@ const markMovieFavorite = (req, res) => {
 }
 
 const changeMovieList = (req, res) => {
-    console.log(req.body);
     User.findByPk(req.user.id, {
         include: [
             {
@@ -288,6 +328,7 @@ const deleteUserMovie = (req, res) => {
 module.exports = {
     renderUserProfile,
     renderUserLists,
+    renderUserListsFiltered,
     addUserMovie,
     editUserProfile,
     changeUserPassword,

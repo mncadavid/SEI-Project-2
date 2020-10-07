@@ -5,6 +5,7 @@ const router = express.Router();
 
 router.get('/profile', ctrl.users.renderUserProfile);
 router.get('/lists', ctrl.users.renderUserLists);
+router.get('/lists/filter', ctrl.users.renderUserListsFiltered);
 
 router.post('/lists/addUserMovie', ctrl.users.addUserMovie);
 
