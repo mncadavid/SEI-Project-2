@@ -26,8 +26,8 @@
             <div class='account-edit-content'>
                 <form action='/users/profile/edit?_method=PUT' method=POST>
                     Name: <input type="text" name="name" value="<%=user.name%>"><br><br>
-                    Username: <%=user.name%><br><br>
-                    Email: <input type="text" name="username" value="<%=user.username%>"><br><br>
+                    Username: <%=user.username%><br><br>
+                    Email: <input type="text" name="username" value="<%=user.email%>"><br><br>
                     Favorite Genre: <select name="favoriteGenre">
                         <%for (let i=0; i<genres.length; i++){%>
                             <option value="<%=genres[i].genre%>"
