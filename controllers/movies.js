@@ -107,7 +107,7 @@ const renderMovieShowPage = (req, res) => {
             }
         } else {
             axios({
-                url: `http://www.omdbapi.com/?i=${req.params.imdbID}&type=movie&apikey=${process.env.OMDB_API_KEY}`,
+                url: `http://www.omdbapi.com/?i=${req.params.imdbID}&plot=full&type=movie&apikey=${process.env.OMDB_API_KEY}`,
                 method: 'get'
             })
             .then(response => {
@@ -154,7 +154,8 @@ const searchForMovie = (req, res) => {
         if(movies.length != 0) {
             console.log(movies[0]);
             res.render('movies/index.ejs', {
-                movies: movies
+                movies: movies,
+                searchedTitle: req.body.title
             });
         } else {
             axios({
@@ -180,10 +181,11 @@ const searchForMovie = (req, res) => {
                                 }  
                             }
                         })
-                        .then(foundMoviesFromDb => {    
+                        .then(foundMoviesFromDb => {   
                             if(foundMoviesFromDb) {
                                 res.render('movies/index.ejs', {
-                                    movies: foundMoviesFromDb
+                                    movies: foundMoviesFromDb,
+                                    searchedTitle: req.body.title
                                 });
                             } else {
                                 res.render('movies/index.ejs', {
@@ -214,9 +216,77 @@ const searchForMovie = (req, res) => {
     });
 }
 
+const searchforMovieWeb = (req, res) => {
+    axios({
+        url: `http://www.omdbapi.com/?s=${req.body.title}&type=movie&apikey=${process.env.OMDB_API_KEY}`,
+        method: 'get'
+    })
+    .then((response) => {
+        const foundMovies = response.data.Search;
+
+        if(foundMovies != undefined) {
+            let userPromises = [];
+            let failedPromises = []
+
+            for( let i = 0 ; i < foundMovies.length ; i++) {
+                userPromises.push(
+                    Movie.upsert(foundMovies[i])
+                    .then(test => {
+                    })
+                    .catch(err => {
+                        failedPromises.push(i);
+                    })
+                )
+            }
+
+            for(let i = failedPromises.length - 1 ; i >= 0 ; i--) {
+                userPromises.splice(failedPromises[i], 1)
+            }
+
+            Promise.all(userPromises)
+            .then(results => {
+                Movie.findAll({
+                    where: {
+                        Title: {
+                            [Op.iLike]: `%${req.body.searchedTitle}%`
+                        }  
+                    }
+                })
+                .then(foundMoviesFromDb => {    
+                    if(foundMoviesFromDb) {
+                        res.render('movies/index.ejs', {
+                            movies: foundMoviesFromDb,
+                            searchedTitle: req.body.searchedTitle
+                        });
+                    } else {
+                        res.render('movies/index.ejs', {
+                            message: "An error has occurred, please try again later."
+                        });
+                    }
+                })
+                .catch (err => {
+                    console.log(err);
+                })
+            })
+            .catch (err => {
+                console.log(err);
+            })
+        } else {
+            res.render('movies/index.ejs', {
+                message: `Unable to find any movies matching ${req.body.title}`
+            });
+        }
+    })
+    .catch((err) => {
+        console.error(err);
+    });
+}
+
+
 
 module.exports = {
     renderSearchPage,
     renderMovieShowPage,
-    searchForMovie
+    searchForMovie,
+    searchforMovieWeb
 }
