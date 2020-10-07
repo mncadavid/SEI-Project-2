@@ -169,10 +169,8 @@ const renderFavoritesPage = (req,res) => {
                 })
             )
         }
-        console.log(favoriteCountArray);
         Promise.all(favoritePromises)
         .then(resolvedPromises => {
-            console.log(favoriteCountArray);
             res.render('movies/favorites.ejs',
                 {
                     movies: favoriteMovies,
