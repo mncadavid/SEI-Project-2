@@ -25,8 +25,11 @@ const renderMovieShowPage = (req, res) => {
             movieData = foundMovie[0].dataValues
 
             if(movieData.Director && movieData.Plot) {
+
+                console.log
                 res.render('movies/showMovie.ejs' , {
-                    movie: movieData    
+                    movie: movieData,
+                    genresObjects: movieData.Genres
                 })
             } else {
                 axios({

@@ -20,71 +20,76 @@
     </header>
 
     <div class='content-box'>
-        <div class="picked-list">
-            <h2>Picked List</h2>
-            <ul>
-                <% for(let i=0; i<pickedMovies.length; i++){%>
-                    <li class="movie-list-item">
-                        <div class="movie-list-data">
-                            <img class ="thumbnail" src="<%=pickedMovies[i].Poster%>" alt="<%=pickedMovies[i].Poster%>" />
-                            <h3>
-                                <a href="/movies/<%=pickedMovies[i].imdbID%>"><%=pickedMovies[i].Title%></a>
-                            </h3>
-                            <h4>
-                                <% for(let j = 0; j<pickedMovies[i].Genres.length; j++){%>
-                                    <%=pickedMovies[i].Genres[j].genre%> 
-                                <%}%>
-                            </h4>
-                            <h4><%=pickedMovies[i].Year%></h4>
-                            <h4><%=pickedMovies[i].Director%></h4>
-                            <p><%=pickedMovies[i].Plot%></p>
-                            <form class="change-movie-list" action="/users/lists/changeMovieList?_method=PUT" method=POST>
-                                <button name='imdbId' type="submit" value="<%=pickedMovies[i].imdbID%>">Watched It!</button>
-                            </form>
-                            <form class ="remove-from-list" action='/users/lists/delete?_method=DELETE' method=POST>
-                                <button name='imdbId' type="submit" value="<%=pickedMovies[i].imdbID%>">Ditch It!</button>
-                            </form>
-                        </div>
-                    </li>
-                <%}%>
-
-            </ul>
-        </div>
-        <div class="watched-list">
-            <h2>Watched List</h2>
-            <ul>
-                <% for(let i=0; i<watchedMovies.length; i++){%>
-                    <li class="movie-list-item">
-                        <div class="movie-list-data">
-                            <img class="thumbnail" src="<%=watchedMovies[i].Poster%>" alt="<%=watchedMovies[i].Poster%>" />
-                            <h3>
-                                <a href="/movies/<%=watchedMovies[i].imdbID%>"><%=watchedMovies[i].Title%></a>
-                            </h3>
-                            <h4>
-                                <% for(let j = 0; j<watchedMovies[i].Genres.length; j++){%>
-                                    <%=watchedMovies[i].Genres[j].genre%> 
-                                <%}%>
-                            </h4>
-                            <h4><%=watchedMovies[i].Year%></h4>
-                            <h4><%=watchedMovies[i].Director%></h4>
-                            <p><%=watchedMovies[i].Plot%></p>
-                            <form class="mark-favorited" action="/users/lists/markMovieFavorite?_method=PUT" method=POST>
-                                <button name='imdbId' value='<%=watchedMovies[i].imdbID%>' type='submit' class="favorite-button glyphicon glyphicon-star" 
-                                    <% if(watchedMovies[i].UserMovie.favorite) { %>
-                                        style="color:gold" 
-                                    <% } %>
-                                ></button>
-                            </form>
-                            <form class="change-movie-list" action="/users/lists/changeMovieList?_method=PUT" method=POST>
-                                <button name='imdbId' type="submit" value="<%=watchedMovies[i].imdbID%>">Didn't see it?</button>
-                            </form>
-                            <form class="remove-from-list" action='/users/lists/delete?_method=DELETE' method=POST>
-                                <button name='imdbId' type="submit" value="<%=watchedMovies[i].imdbID%>">Ditch It!</button>
-                            </form>
-                        </div>
-                    </li>
-                <%}%>
-            </ul>
+        <div class='lists-box'>
+            <div class="picked-list">
+                <h2>Picked List</h2>
+                <div class='list-page-scroll-box'>
+                    <ul>
+                        <% for(let i=0; i<pickedMovies.length; i++){%>
+                            <li class="movie-list-item">
+                                <div class="movie-list-data">
+                                    <img class ="thumbnail" src="<%=pickedMovies[i].Poster%>" alt="<%=pickedMovies[i].Poster%>" />
+                                    <h3>
+                                        <a href="/movies/<%=pickedMovies[i].imdbID%>"><%=pickedMovies[i].Title%></a>
+                                    </h3>
+                                    <h4>
+                                        <% for(let j = 0; j<pickedMovies[i].Genres.length; j++){%>
+                                            <%=pickedMovies[i].Genres[j].genre%> 
+                                        <%}%>
+                                    </h4>
+                                    <h4><%=pickedMovies[i].Year%></h4>
+                                    <h4><%=pickedMovies[i].Director%></h4>
+                                    <p><%=pickedMovies[i].Plot%></p>
+                                    <form class="change-movie-list" action="/users/lists/changeMovieList?_method=PUT" method=POST>
+                                        <button name='imdbId' type="submit" value="<%=pickedMovies[i].imdbID%>">Watched It!</button>
+                                    </form>
+                                    <form class ="remove-from-list" action='/users/lists/delete?_method=DELETE' method=POST>
+                                        <button name='imdbId' type="submit" value="<%=pickedMovies[i].imdbID%>">Ditch It!</button>
+                                    </form>
+                                </div>
+                            </li>
+                        <%}%>
+                    </ul>
+                </div>
+            </div>
+            <div class="watched-list">
+                <h2>Watched List</h2>
+                <div class='list-page-scroll-box'>
+                    <ul>
+                        <% for(let i=0; i<watchedMovies.length; i++){%>
+                            <li class="movie-list-item">
+                                <div class="movie-list-data">
+                                    <img class="thumbnail" src="<%=watchedMovies[i].Poster%>" alt="<%=watchedMovies[i].Poster%>" />
+                                    <h3>
+                                        <a href="/movies/<%=watchedMovies[i].imdbID%>"><%=watchedMovies[i].Title%></a>
+                                    </h3>
+                                    <h4>
+                                        <% for(let j = 0; j<watchedMovies[i].Genres.length; j++){%>
+                                            <%=watchedMovies[i].Genres[j].genre%> 
+                                        <%}%>
+                                    </h4>
+                                    <h4><%=watchedMovies[i].Year%></h4>
+                                    <h4><%=watchedMovies[i].Director%></h4>
+                                    <p><%=watchedMovies[i].Plot%></p>
+                                    <form class="mark-favorited" action="/users/lists/markMovieFavorite?_method=PUT" method=POST>
+                                        <button name='imdbId' value='<%=watchedMovies[i].imdbID%>' type='submit' class="favorite-button glyphicon glyphicon-star" 
+                                            <% if(watchedMovies[i].UserMovie.favorite) { %>
+                                                style="color:gold" 
+                                            <% } %>
+                                        ></button>
+                                    </form>
+                                    <form class="change-movie-list" action="/users/lists/changeMovieList?_method=PUT" method=POST>
+                                        <button name='imdbId' type="submit" value="<%=watchedMovies[i].imdbID%>">Didn't see it?</button>
+                                    </form>
+                                    <form class="remove-from-list" action='/users/lists/delete?_method=DELETE' method=POST>
+                                        <button name='imdbId' type="submit" value="<%=watchedMovies[i].imdbID%>">Ditch It!</button>
+                                    </form>
+                                </div>
+                            </li>
+                        <%}%>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 

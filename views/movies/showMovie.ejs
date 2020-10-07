@@ -27,8 +27,14 @@
     
         <img class='poster' src="<%=movie.Poster%>" alt="">
         <h4>
-            <% for(let i = 0; i<genres.length; i++) { %>
-                <%=genres[i]%> 
+            <% if(locals.genres) { %>
+                <% for(let i = 0; i<genres.length; i++) { %>
+                    <%=genres[i]%> 
+                <% } %>
+            <% } else { %>
+                <% for(let i = 0; i<genresObjects.length; i++) { %>
+                    <%=genresObjects[i].genre%> 
+                <% } %>
             <% } %>
         </h4>
         <p><%=movie.Year%></p>
