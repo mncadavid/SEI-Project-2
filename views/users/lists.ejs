@@ -21,9 +21,43 @@
     </header>
 
     <div class='content-box'>
+        <div class="list-headers">
+            <h2>Picked List</h2>
+            <h2>Watched List</h2>
+        </div>
+        
+        <form class ="filter-list-form" action='/users/lists/filter?_method=PUT' method=POST>
+            <select name="pickedGenre">
+                <option value="allGenres" selected>All Genres</option>
+                <% for(let i = 0 ; i < genres.length ; i++) { %>
+                    <option value="<%=genres[i].genre%>"
+                        <% if(locals.filters && filters.pickedGenre == genres[i].genre) { %> 
+                            selected
+                        <% } %>   
+                    >
+                        <%=genres[i].genre%>
+                    </option>
+                <% } %>
+            </select>
+            <button type="submit">Filter</button>
+
+            <select name="watchedGenre">
+                <option value="allGenres" selected>All Genres</option>
+                <% for(let i = 0 ; i < genres.length ; i++) { %>
+                    <option value="<%=genres[i].genre%>"
+                        <% if(locals.filters && filters.watchedGenre == genres[i].genre) { %> 
+                            selected
+                        <% } %>   
+                    >
+                        <%=genres[i].genre%>
+                    </option>
+                <% } %>
+            </select>
+            <button type="submit">Filter</button>
+        </form>
+
         <div class='lists-box'>
             <div class="picked-list">
-                <h2>Picked List</h2>
                 <div class='list-page-scroll-box'>
                     <ul>
                         <% for(let i=0; i<pickedMovies.length; i++){%>
@@ -36,7 +70,7 @@
                                     <h4>
                                         <% for(let j = 0; j<pickedMovies[i].Genres.length; j++){%>
                                             <%=pickedMovies[i].Genres[j].genre%> 
-                                        <%}%>
+                                        <% } %>
                                     </h4>
                                     <h4><%=pickedMovies[i].Year%></h4>
                                     <h4><%=pickedMovies[i].Director%></h4>
@@ -53,7 +87,6 @@
                 </div>
             </div>
             <div class="watched-list">
-                <h2>Watched List</h2>
                 <div class='list-page-scroll-box'>
                     <ul>
                         <% for(let i=0; i<watchedMovies.length; i++){%>
@@ -66,7 +99,7 @@
                                     <h4>
                                         <% for(let j = 0; j<watchedMovies[i].Genres.length; j++){%>
                                             <%=watchedMovies[i].Genres[j].genre%> 
-                                        <%}%>
+                                        <% } %>
                                     </h4>
                                     <h4><%=watchedMovies[i].Year%></h4>
                                     <h4><%=watchedMovies[i].Director%></h4>
