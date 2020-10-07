@@ -44,6 +44,7 @@ footer {
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-evenly;
+    height: 77vh;
 }
 
 /* login page styling */
@@ -165,6 +166,17 @@ footer {
     width: 70%;
 }
 
+.search-scroll-box {
+    height:100%;
+    width: 100%;
+    overflow:auto;
+    background-color:gray;
+    color:white;
+    scrollbar-base-color:gold;
+    font-family:sans-serif;
+    padding:10px;
+}
+
 .search-results-list {
     margin: 0;
     padding-inline-start: 0;
@@ -212,3 +224,22 @@ footer {
     color: gray;
     cursor: pointer;
   }
+
+.lists-box {
+    height:100%;
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
+
+.list-page-scroll-box {
+    height:91%;
+    width: 100%;
+    overflow:auto;
+    background-color:gray;
+    color:white;
+    scrollbar-base-color:gold;
+    font-family:sans-serif;
+    padding:10px;
+}
