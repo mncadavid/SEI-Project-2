@@ -4,6 +4,7 @@ const ctrl = require('../controllers');
 
 
 router.get('/', ctrl.movies.renderSearchPage);
+router.get('/favorites', ctrl.movies.renderFavoritesPage);
 router.get('/:imdbID', ctrl.movies.renderMovieShowPage);
 
 router.put('/search', ctrl.movies.searchForMovie);
