@@ -29,80 +29,110 @@ const renderUserProfile = (req,res) => {
 }
 
 const renderUserLists = (req,res) => {
-    User.findByPk(req.user.id, {
-        include: [
-            {
-                model: Movie,
-                attributes: ['imdbID', 'Title', 'Poster', 'Year', 'Director', 'Plot'],
-                include: [{
-                    model: Genre,
-                    attributes: ['genre'] 
-                }]
+    Genre.findAll()
+    .then(genres => {
+        User.findByPk(req.user.id, {
+            include: [
+                {
+                    model: Movie,
+                    attributes: ['imdbID', 'Title', 'Poster', 'Year', 'Director', 'Plot'],
+                    include: [{
+                        model: Genre,
+                        attributes: ['genre'] 
+                    }]
+                }
+            ],
+            attributes: ['username']
+        })
+        .then(foundUser => {
+            const pickedList = [];
+            const watchedList = [];
+            for(let i =0; i<foundUser.Movies.length; i++){
+                if(foundUser.Movies[i].UserMovie.haveSeen){
+                    watchedList.push(foundUser.Movies[i]);
+                }
+                else{
+                    pickedList.push(foundUser.Movies[i]);
+                }
             }
-        ],
-        attributes: ['username']
-    })
-    .then(foundUser => {
-        const pickedList = [];
-        const watchedList = [];
-        for(let i =0; i<foundUser.Movies.length; i++){
-            if(foundUser.Movies[i].UserMovie.haveSeen){
-                watchedList.push(foundUser.Movies[i]);
-            }
-            else{
-                pickedList.push(foundUser.Movies[i]);
-            }
-        }
-        res.render("users/lists.ejs", {
-            pickedMovies: pickedList,
-            watchedMovies: watchedList
-        });
+            res.render("users/lists.ejs", {
+                pickedMovies: pickedList,
+                watchedMovies: watchedList,
+                genres: genres,
+                filters: req.body
+            });
+        })
+        .catch(err => {
+            console.log(err);
+        })
     })
     .catch(err => {
-        console.log(err);
+        console.log(err.name);
     })
+
 }
 
 const renderUserListsFiltered = (req, res) => {
-    User.findByPk(req.user.id, {
-        include: [
-            {
-                model: Movie,
-                attributes: ['imdbID', 'Title', 'Poster', 'Year', 'Director', 'Plot'],
-                include: [{
-                    model: Genre,
-                    attributes: ['genre'] 
-                }]
-            }
-        ],
-        attributes: ['username']
-    })
-    .then(foundUser => {
-        const pickedList = [];
-        const watchedList = [];
-        for(let i =0; i<foundUser.Movies.length; i++){
-            if(foundUser.Movies[i].UserMovie.haveSeen){
-                // for(let j = 0 ; j < foundUser.Movies[i].Genres.length ; j++) {
-                    // if(foundUser.Movies[i].Genres[j].genre == 'Comedy') {
+    console.log(req.body);
+    Genre.findAll()
+    .then(genres => {
+        User.findByPk(req.user.id, {
+            include: [
+                {
+                    model: Movie,
+                    attributes: ['imdbID', 'Title', 'Poster', 'Year', 'Director', 'Plot'],
+                    include: [{
+                        model: Genre,
+                        attributes: ['genre'] 
+                    }]
+                }
+            ],
+            attributes: ['username']
+        })
+        .then(foundUser => {
+            const pickedList = [];
+            const watchedList = [];
+            for(let i =0; i<foundUser.Movies.length; i++){
+                if(foundUser.Movies[i].UserMovie.haveSeen){
+                    if(req.body.watchedGenre == 'allGenres') {
                         watchedList.push(foundUser.Movies[i]);
-                    // }
-                // }
-            } else {
-                // for(let j = 0 ; j < foundUser.Movies[i].Genres.length ; j++) {
-                    // if(foundUser.Movies[i].Genres[j].genre == 'Comedy') {
+                    } else {
+                        for(let j = 0 ; j < foundUser.Movies[i].Genres.length ; j++) {
+                            if(foundUser.Movies[i].Genres[j].genre == req.body.watchedGenre) {
+                                console.log(foundUser.Movies[i].Genres[j].genre);
+
+                                watchedList.push(foundUser.Movies[i]);
+                            }
+                        }
+                    }
+                } else {
+                    if(req.body.pickedGenre == 'allGenres') {
                         pickedList.push(foundUser.Movies[i]);
-                    // }
-                // }
+                    } else {
+                        for(let j = 0 ; j < foundUser.Movies[i].Genres.length ; j++) {
+                            if(foundUser.Movies[i].Genres[j].genre == req.body.pickedGenre) {
+                                console.log(foundUser.Movies[i].Genres[j].genre);
+                                pickedList.push(foundUser.Movies[i]);
+                            }
+                        }
+                    }
+                }
             }
-        }
-        res.render("users/lists.ejs", {
-            pickedMovies: pickedList,
-            watchedMovies: watchedList
-        });
+            res.render("users/lists.ejs", {
+                pickedMovies: pickedList,
+                watchedMovies: watchedList,
+                genres: genres
+            });
+        })
+        .catch(err => {
+            console.log(err);
+        })
     })
     .catch(err => {
-        console.log(err);
+        console.log(err.name);
     })
+    
+    
 }
 
 const addUserMovie = (req, res) => {
