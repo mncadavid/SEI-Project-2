@@ -31,7 +31,7 @@
                 <input type="password" name="password" required><br><br>
                 <h2>Email:  </h2> 
                 <input type="text" name="email"><br><br>
-                <h2>Favorite Genre:  </h2> 
+                <h2>Favorite Genre:   </h2> 
                 <select name="favoriteGenre">
                     <%for (let i=0; i<genres.length; i++){%>
                         <option value=genres[i].id><%=genres[i].genre%></option>
@@ -42,7 +42,7 @@
                 <a href='/auth/login'>Already a User? Log In!</a>
             </form>
             <div class="now-showing">
-                <h2>Now Showing</h2>
+                <h2>Now Showing!</h2>
                 <div id="posterCarousel" class="carousel slide" data-ride="carousel">
                     <ol class="carousel-indicators">
                         <li data-target='#posterCarousel' data-slide-to="0" class="active"></li>
