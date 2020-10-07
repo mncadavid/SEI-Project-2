@@ -6,11 +6,11 @@ body {
     flex-flow: column wrap;
     justify-content: center;
     background-color: #FFFCF2;
-    
 }
 
 header {
-    background-color: #252422;
+    /* background-color: #252422; */
+    background-color: black;
     color: #FFFCF2;
     height: 15vh;
     width: 100%;
@@ -28,10 +28,12 @@ h1 {
 
 
 footer {
-    background-color: #252422;
+    /* background-color: #252422; */
+    background-color: black;
     color: #FFFCF2;
-    height: 8vh;
     width: 100%;
+    text-align: center;
+    height: 8vh;
 }
 
 .error-message {
@@ -45,11 +47,102 @@ footer {
 }
 
 /* login page styling */
-
-.login-box {
-    padding: 10px;
+.auth-body{
+    background-color: black;
+    height: 100vh;
+    width: 100%;
 }
 
+.auth-content{
+    background-image: url("seats.jpg");
+    background-size: contain;
+    color: white;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-evenly;
+
+}
+
+.auth-content h1{
+    /* font-family: 'Righteous', cursive; */
+    margin: 0;
+    font-weight: bold;
+}
+
+.login-content{
+    display: flex;
+    align-items: center;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+}
+.login-box {
+    padding: 20px;
+    justify-content: center;
+    margin-bottom: 200px;
+    font-weight: bold;
+}
+.login-box h2{
+    display: inline;
+}
+.login-box form input {
+    color: black
+}
+.login-box a{
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+.now-showing{
+    text-align: center;
+    background-color: black;
+    padding: 20px;
+    border-radius: 10px;
+}
+/* sign up styling */
+
+.auth-body{
+    background-color: black;
+}
+
+.auth-content{
+    background-image: url("seats.jpg");
+    background-size: contain;
+    color: white;
+}
+
+.auth-content h1{
+    /* font-family: 'Righteous', cursive; */
+    margin: 0;
+    font-weight: bold;
+}
+
+.sign-up-content {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    font-weight: bold;
+}
+.sign-up-form{
+    margin-bottom: 100px;
+}
+.sign-up-form input{
+    color: black;
+}
+.sign-up-form select{
+    color: black;
+}
+.sign-up-form h2{
+    display: inline;
+}
+.signup {
+    color: black
+}
+.sign-up-content a{
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
 
 /* movie search styling */
 
@@ -70,7 +163,6 @@ footer {
     background: #F6F7EB;
     padding: 10px;
     width: 70%;
-
 }
 
 .search-results-list {
@@ -112,38 +204,6 @@ footer {
 }
 
 /* list page styling */
-
-label input[type="checkbox"] {
-    display: none;
-}
-  
-.custom-checkbox {
-    margin-left: 2em;
-    position: relative;
-    cursor: pointer;
-}
-  
-.custom-checkbox .glyphicon {
-    color: gold;
-    font-size: 0.75em;
-}
-  
-.custom-checkbox .glyphicon-star-empty {
-    color: gray;
-}
-  
-.custom-checkbox .glyphicon-star {
-    opacity: 0;
-    transition: opacity 0.2s ease-in-out;
-}
-  
-.custom-checkbox:hover .glyphicon-star{
-    opacity: 0.5;
-}
-  
-.custom-checkbox input[type="checkbox"]:checked ~ .glyphicon-star {
-    opacity: 1;
-}
 
 .favorite-button {
     background: none;

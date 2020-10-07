@@ -5,35 +5,72 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
 
+<!--Bootstrap CSS File-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<!-- Minified JS library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- Compiled and minified Bootstrap JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
     <link rel="stylesheet" href="/css/app.css">
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
 
 </head>
-<body>
-    <header>
-        <nav>
-
-        </nav>
-    </header>
-    
-    <div class='content-box'>
-        <h1>Sign Up</h1>
-        <form action='/auth/signup' method=POST>
-            Name: 
-            <input type="text" name="name" required> <br><br>
-            Username: 
-            <input type="text" name="username" required><br><br>
-            Password: 
-            <input type="text" name="password" required><br><br>
-            Email: 
-            <input type="text" name="email"><br><br>
-            Favorite Genre: 
-            <select name="favoriteGenre">
-                <%for (let i=0; i<genres.length; i++){%>
-                    <option value=genres[i].id><%=genres[i].genre%></option>
-                <%}%>
-            </select><br><br>
-            <input type="submit" value="Sign Up">
-        </form>
+<body class='auth-body'>
+    <div class='content-box auth-content'>
+        <h1>Pick a Flick!</h1>
+        <div class="sign-up-content">
+            <form class="sign-up-form" action='/auth/signup' method=POST>
+                <h2>Name:  </h2> 
+                <input type="text" name="name" required> <br><br>
+                <h2>Username:  </h2> 
+                <input type="text" name="username" required><br><br>
+                <h2>Password:  </h2> 
+                <input type="password" name="password" required><br><br>
+                <h2>Email:  </h2> 
+                <input type="text" name="email"><br><br>
+                <h2>Favorite Genre:  </h2> 
+                <select name="favoriteGenre">
+                    <%for (let i=0; i<genres.length; i++){%>
+                        <option value=genres[i].id><%=genres[i].genre%></option>
+                    <%}%>
+                </select><br><br>
+                <input class="signup" type="submit" value="Sign Up">
+                <br><br>
+                <a href='/auth/login'>Already a User? Log In!</a>
+            </form>
+            <div class="now-showing">
+                <h2>Now Showing</h2>
+                <div id="posterCarousel" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target='#posterCarousel' data-slide-to="0" class="active"></li>
+                        <li data-target='#posterCarousel' data-slide-to="1"></li>
+                        <li data-target='#posterCarousel' data-slide-to="2"></li>
+                    </ol>
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <img src="https://m.media-amazon.com/images/M/MV5BMmQ2MmU3NzktZjAxOC00ZDZhLTk4YzEtMDMyMzcxY2IwMDAyXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg"
+                                alt="Alien Poster">
+                        </div>
+                        <div class="item">
+                            <img src="https://m.media-amazon.com/images/M/MV5BNDg4NjM1YjMtYmNhZC00MjM0LWFiZmYtNGY1YjA3MzZmODc5XkEyXkFqcGdeQXVyNDk3NzU2MTQ@._V1_SX300.jpg"
+                                alt="Amelie Poster">
+                        </div>
+                        <div class="item">
+                            <img src="https://m.media-amazon.com/images/M/MV5BNDUyMmFiYTctZDcyYS00OGY4LTk1ZmYtZjBmODBlZTc1NjU4XkEyXkFqcGdeQXVyNTk1MTAyODc@._V1_SX300.jpg"
+                                alt="The Smurfs Poster">
+                        </div>
+                    </div>
+                    <a class="left carousel-control" href="#posterCarousel" data-slide="prev">
+                        <span class="icon-prev"></span>
+                    </a>
+                    <a class="right carousel-control" href="#posterCarousel" data-slide="next">
+                        <span class="icon-next"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
 
     <footer>
