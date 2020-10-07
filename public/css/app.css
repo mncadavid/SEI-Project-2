@@ -22,6 +22,25 @@ nav {
     justify-content: space-evenly;
 }
 
+nav a{
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    font-size: 17px;
+    padding: 14px 16px;
+    float:right;
+}
+
+nav a:hover{
+    background-color: #ddd;
+    color: black;
+}
+
+nav a.active {
+    background-color: #BB000E;
+    color: white;
+}
+
 h1 {
     text-align: center;
 }

@@ -11,17 +11,17 @@
 </head>
 <body>
     <header>
-        <nav>
-            <a href="/movies">Pick a Flick!</a>
+        <nav class="nav-bar">
+            <a class="active" href="/movies">Pik a Flik!</a>
             <a href="/users/lists">My Lists</a>
             <a href="/users/profile">My Account</a>
-            <a href="/auth/logout">Sign out</a>
+            <a href="/auth/logout">Sign Out</a>
         </nav>
     </header>
 
     <div class='content-box'>
         <div class='search-menu'>
-            <h1>Pick a Flick!</h1>
+            <h1>Pik a Flik!</h1>
         
             <form class='search-form' action="/movies/search?_method=PUT" method="POST">
                 <% if(locals.message) { %>
