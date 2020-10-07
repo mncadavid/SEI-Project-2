@@ -87,7 +87,7 @@ footer a{
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-evenly;
-
+    height: 92vh;
 }
 
 .auth-content h1{
