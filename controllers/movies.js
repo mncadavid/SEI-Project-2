@@ -77,30 +77,29 @@ const renderMovieShowPage = (req, res) => {
 
                                     })
                                     .catch(err => {
-                                        console.log(err);
+                                        console.log(err.name);
                                     })
                                 })
                                 .catch(err => {
-                                    console.log(err);
+                                    console.log(err.name);
                                 })
                             }
 
-                            //todo page renders before genres are found causing error when initially loading
-
                             res.render('movies/showMovie.ejs', {
-                                movie: foundMovie[0].dataValues
+                                movie: foundMovie[0].dataValues,
+                                genres: genres
                             });
                         })
                         .catch (err => {
-                            console.log(err);
+                            console.log(err.name);
                         });
                     })
                     .catch (err => {
-                        console.log(err);
+                        console.log(err.name);
                     });
                 })
                 .catch (err => {
-                    console.log(err);
+                    console.log(err.name);
                 });
             }
         } else {
@@ -123,16 +122,16 @@ const renderMovieShowPage = (req, res) => {
                     })
                 })
                 .catch (err => {
-                    console.log(err);
+                    console.log(err.name);
                 });
             })
             .catch (err => {
-                console.log(err);
+                console.log(err.name);
             });
         }
     })
     .catch (err => {
-        console.log(err);
+        console.log(err.name);
     });
 }
 
@@ -190,11 +189,11 @@ const searchForMovie = (req, res) => {
                             }
                         })
                         .catch (err => {
-                            console.log(err);
+                            console.log(err.name);
                         })
                     })
                     .catch (err => {
-                        console.log(err);
+                        console.log(err.name);
                     })
                 } else {
                     res.render('movies/index.ejs', {
@@ -208,7 +207,7 @@ const searchForMovie = (req, res) => {
         }
     })
     .catch (err => {
-        console.log(err);
+        console.log(err.name);
     });
 }
 
