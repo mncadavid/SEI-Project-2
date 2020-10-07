@@ -19,7 +19,9 @@ header {
 nav {
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-evenly;
+    justify-content: flex-end;
+    height: 100%;
+    align-items: center;
 }
 
 nav a{
@@ -27,12 +29,13 @@ nav a{
     text-decoration: none;
     color: white;
     font-size: 17px;
-    padding: 14px 16px;
+    padding: 5vh 16px;
     float:right;
+    height: 100%;
 }
 
 nav a:hover{
-    background-color: #ddd;
+    background-color: #BFBFBF;
     color: black;
 }
 
