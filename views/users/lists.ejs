@@ -39,7 +39,6 @@
                                     </h4>
                                     <h4><%=pickedMovies[i].Year%></h4>
                                     <h4><%=pickedMovies[i].Director%></h4>
-                                    <p><%=pickedMovies[i].Plot%></p>
                                     <form class="change-movie-list" action="/users/lists/changeMovieList?_method=PUT" method=POST>
                                         <button name='imdbId' type="submit" value="<%=pickedMovies[i].imdbID%>">Watched It!</button>
                                     </form>
@@ -70,7 +69,6 @@
                                     </h4>
                                     <h4><%=watchedMovies[i].Year%></h4>
                                     <h4><%=watchedMovies[i].Director%></h4>
-                                    <p><%=watchedMovies[i].Plot%></p>
                                     <form class="mark-favorited" action="/users/lists/markMovieFavorite?_method=PUT" method=POST>
                                         <button name='imdbId' value='<%=watchedMovies[i].imdbID%>' type='submit' class="favorite-button glyphicon glyphicon-star" 
                                             <% if(watchedMovies[i].UserMovie.favorite) { %>

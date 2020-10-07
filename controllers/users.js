@@ -81,7 +81,11 @@ const addUserMovie = (req, res) => {
             res.redirect(`/movies/${req.body.imdbId}`);
         })
         .catch(err => {
-            console.log(err);
+            if(err.name === "SequelizeUniqueConstraintError") {
+                res.redirect(`/movies/${req.body.imdbId}`);
+            } else {
+                console.log(err.name);
+            }
         })
     })
     .catch(err => {
