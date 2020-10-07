@@ -58,8 +58,7 @@ const renderUserLists = (req,res) => {
             res.render("users/lists.ejs", {
                 pickedMovies: pickedList,
                 watchedMovies: watchedList,
-                genres: genres,
-                filters: req.body
+                genres: genres
             });
         })
         .catch(err => {
@@ -121,7 +120,8 @@ const renderUserListsFiltered = (req, res) => {
             res.render("users/lists.ejs", {
                 pickedMovies: pickedList,
                 watchedMovies: watchedList,
-                genres: genres
+                genres: genres,
+                filters: req.body
             });
         })
         .catch(err => {
