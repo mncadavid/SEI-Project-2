@@ -5,11 +5,10 @@ body {
     display: flex;
     flex-flow: column wrap;
     justify-content: center;
-    background-color: #FFFCF2;
+    background-color: #ECECEC;
 }
 
 header {
-    /* background-color: #252422; */
     background-color: black;
     color: #FFFCF2;
     height: 15vh;
@@ -19,7 +18,29 @@ header {
 nav {
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-evenly;
+    justify-content: flex-end;
+    height: 100%;
+    align-items: center;
+}
+
+nav a{
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    font-size: 17px;
+    padding: 5vh 16px;
+    float:right;
+    height: 100%;
+}
+
+nav a:hover{
+    background-color: #BFBFBF;
+    color: black;
+}
+
+nav a.active {
+    background-color: #BB000E;
+    color: white;
 }
 
 h1 {
@@ -28,12 +49,17 @@ h1 {
 
 
 footer {
-    /* background-color: #252422; */
     background-color: black;
     color: #FFFCF2;
     width: 100%;
     text-align: center;
     height: 8vh;
+    text-decoration: none;
+    padding: 3vh;
+}
+
+footer a{
+    color: #BFBFBF;
 }
 
 .error-message {
@@ -61,7 +87,7 @@ footer {
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-evenly;
-
+    height: 92vh;
 }
 
 .auth-content h1{
@@ -99,6 +125,7 @@ footer {
     background-color: black;
     padding: 20px;
     border-radius: 10px;
+    height: 555px;
 }
 /* sign up styling */
 
@@ -145,6 +172,20 @@ footer {
     font-weight: bold;
 }
 
+/* user profile styling */
+
+.account-content{
+    border: solid black;
+    border-radius: 5px;
+    background-color: #BFBFBF;
+    margin: auto;
+    padding: 10px;
+}
+
+.account-edit-content{
+
+}
+
 /* movie search styling */
 
 .search-menu {
@@ -161,7 +202,7 @@ footer {
 
 .search-results-container {
     margin: 0 auto;
-    background: #F6F7EB;
+    background: #ECECEC;
     padding: 10px;
     width: 70%;
 }
