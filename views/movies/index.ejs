@@ -63,6 +63,12 @@
                         <% } %>
                     </ul>
                 </div>
+                <h3 class="search-again-tag">Don't see what you're looking for? 
+                    <form class="search-web-button" action="/movies/search/web" method=POST>
+                        <input type="hidden" name="searchedTitle" value="<%=searchedTitle%>" />
+                        <button type="submit">Get more results from the web</button>
+                    </form>
+                </h3>
             <% } %>
         </div>
     
