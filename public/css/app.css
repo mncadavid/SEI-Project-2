@@ -5,7 +5,7 @@ body {
     display: flex;
     flex-flow: column wrap;
     justify-content: center;
-    background-color: #FFFCF2;
+    background-color: #ECECEC;
 }
 
 header {
@@ -172,6 +172,20 @@ footer a{
     font-weight: bold;
 }
 
+/* user profile styling */
+
+.account-content{
+    border: solid black;
+    border-radius: 5px;
+    background-color: #BFBFBF;
+    margin: auto;
+    padding: 10px;
+}
+
+.account-edit-content{
+
+}
+
 /* movie search styling */
 
 .search-menu {
@@ -188,7 +202,7 @@ footer a{
 
 .search-results-container {
     margin: 0 auto;
-    background: #F6F7EB;
+    background: #ECECEC;
     padding: 10px;
     width: 70%;
 }
