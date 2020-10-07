@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pik a Flik!</title>
+    <title>All-Time Favorites</title>
 
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/app.css">
@@ -21,15 +21,7 @@
 
     <div class='content-box'>
         <div class='search-menu'>
-            <h1>Pik a Flik!</h1>
-        
-            <form class='search-form' action="/movies/search?_method=PUT" method="POST">
-                <% if(locals.message) { %>
-                    <h2 class='error-message'><%=message%></h2>
-                <% } %>
-                <input type="text" name="title" id="" />
-                <input type="submit" name="search" id="" />
-            </form>
+            <h1>All-Time Favorites!</h1>
         </div>
 
         <div class=search-scroll-box>
@@ -38,6 +30,9 @@
                     <ul class='search-results-list'>
                         <% for(let i = 0 ; i < movies.length ; i++ ) { %>
                             <li class='movie-list-item'>
+                                <div class="favorite-count">
+                                    <h2>&star; <%=favorites[i]%></h2>
+                                </div>
                                 <div class='movie-list-data'>
                                     <img class='thumbnail ' src="<%=movies[i].Poster%>" alt="">
                                     <a href="/movies/<%=movies[i].imdbID%>">
@@ -63,12 +58,6 @@
                         <% } %>
                     </ul>
                 </div>
-                <h3 class="search-again-tag">Don't see what you're looking for? 
-                    <form class="search-web-button" action="/movies/search/web" method=POST>
-                        <input type="hidden" name="searchedTitle" value="<%=searchedTitle%>" />
-                        <button type="submit">Get more results from the web</button>
-                    </form>
-                </h3>
             <% } %>
         </div>
     
