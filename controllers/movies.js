@@ -1,9 +1,11 @@
 const Movie = require('../models').Movie;
 const Genre = require('../models').Genre;
 const MovieGenre = require('../models').MovieGenre;
+const UserMovie = require('../models').UserMovie;
 
 const axios = require('axios');
 const { Op } = require("sequelize");
+const { sequelize } = require('../models');
 
 
 const renderSearchPage = (req, res) => {
@@ -137,6 +139,51 @@ const renderMovieShowPage = (req, res) => {
         console.log(err.name);
     });
 }
+
+
+const renderFavoritesPage = (req,res) => {
+    console.log("HERE");
+    UserMovie.findAll({
+        where: {
+            favorite:true
+        },
+        attributes: ['movieId', [sequelize.fn('count', sequelize.col('UserMovie.favorite')), 'favoriteCount']],
+        group: ['UserMovie.movieId'],
+        order:[
+            [sequelize.col('favoriteCount'), 'DESC']
+        ]
+    })
+    .then(favoriteCounts => {
+        let favoriteMovies = [];
+        let favoriteCountArray = [];
+        let favoritePromises = [];
+        for (let i = 0; i< favoriteCounts.length; i++){
+            favoritePromises.push(
+                Movie.findByPk(favoriteCounts[i].movieId)
+                .then(foundMovie => {
+                    favoriteMovies.push(foundMovie);
+                    favoriteCountArray.push(favoriteCounts[i].dataValues.favoriteCount);
+                })
+                .catch(err => {
+                    console.log(err.name);
+                })
+            )
+        }
+        Promise.all(favoritePromises)
+        .then(resolvedPromises => {
+            res.render('movies/favorites.ejs',
+                {
+                    movies: favoriteMovies,
+                    favorites: favoriteCountArray
+                }
+            )
+        })
+    })
+    .catch(err => {
+        console.log(err);
+    })
+}
+
 
 const searchForMovie = (req, res) => {
     Movie.findAll({
@@ -287,6 +334,7 @@ const searchforMovieWeb = (req, res) => {
 module.exports = {
     renderSearchPage,
     renderMovieShowPage,
+    renderFavoritesPage,
     searchForMovie,
     searchforMovieWeb
 }

@@ -211,7 +211,7 @@ footer a{
     height:100%;
     width: 100%;
     overflow:auto;
-    background-color:gray;
+    background-color:#ECECEC;
     color:white;
     scrollbar-base-color:gold;
     font-family:sans-serif;
@@ -225,19 +225,48 @@ footer a{
     display: flex;
     flex-flow: row wrap;
     justify-content: space-evenly;
+    background-color: #BFBFBF;
 }
 
 .movie-list-item {
-    border: 4px solid #A71125;
+    border: solid black;
     width: 100%;
     height: 20vh;
     padding: 10px;
+    border-radius: 5px;
+    /* display: flex; */
 }
 
-.movie-list-data {
+/* .movie-list-data {
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: row nowrap;
     justify-content: space-between;
+} */
+
+.movie-list-data{
+    display: grid;
+    grid-template-rows: 20vh;
+    /* need 7 columns */
+    grid-template-columns: 84px 4fr 32px 4fr 2fr 2fr;
+}
+
+.thumbnail{
+    grid-column: 1;
+}
+.title{
+    grid-column: 2;
+}
+.year{
+    grid-column: 3;
+}
+.imdbLink{
+    grid-column: 4;
+}
+.add-pick-list{
+    grid-column: 5;
+}
+.add-watch-list{
+    grid-column: 6;
 }
 
 .thumbnail {
@@ -296,4 +325,12 @@ footer a{
     scrollbar-base-color:gold;
     font-family:sans-serif;
     padding:10px;
+}
+
+/* favorite styling */
+.favorite-count{
+    display:inline;
+}
+.favorite-count h2{
+    display: inline;
 }
