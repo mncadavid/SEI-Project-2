@@ -28,7 +28,6 @@ const renderMovieShowPage = (req, res) => {
 
             if(movieData.Director && movieData.Plot) {
 
-                console.log
                 res.render('movies/showMovie.ejs' , {
                     movie: movieData,
                     genresObjects: movieData.Genres
@@ -82,11 +81,11 @@ const renderMovieShowPage = (req, res) => {
 
                                     })
                                     .catch(err => {
-                                        console.log(err.name);
+                                        console.log(err);
                                     })
                                 })
                                 .catch(err => {
-                                    console.log(err.name);
+                                    console.log(err);
                                 })
                             }
 
@@ -96,15 +95,15 @@ const renderMovieShowPage = (req, res) => {
                             });
                         })
                         .catch (err => {
-                            console.log(err.name);
+                            console.log(err);
                         });
                     })
                     .catch (err => {
-                        console.log(err.name);
+                        console.log(err);
                     });
                 })
                 .catch (err => {
-                    console.log(err.name);
+                    console.log(err);
                 });
             }
         } else {

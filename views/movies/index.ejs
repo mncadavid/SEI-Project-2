@@ -24,7 +24,7 @@
         <div class='search-menu'>
             <h1>Pik a Flik!</h1>
         
-            <form class='search-form' action="/movies/search?_method=PUT" method="POST">
+            <form class='search-form' action="/movies/search" method="POST">
                 <% if(locals.message) { %>
                     <h2 class='error-message'><%=message%></h2>
                 <% } %>

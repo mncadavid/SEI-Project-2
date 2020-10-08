@@ -7,7 +7,7 @@ router.get('/', ctrl.movies.renderSearchPage);
 router.get('/favorites', ctrl.movies.renderFavoritesPage);
 router.get('/:imdbID', ctrl.movies.renderMovieShowPage);
 
-router.put('/search', ctrl.movies.searchForMovie);
+router.post('/search', ctrl.movies.searchForMovie);
 router.post('/search/web', ctrl.movies.searchforMovieWeb);
 
 
