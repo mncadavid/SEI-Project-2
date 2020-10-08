@@ -48,7 +48,6 @@ const signUpUser = (req,res) => {
                    }
                )
                res.cookie("jwt", token);
-               console.log(token);
                res.redirect(`/users/profile`);
            })
            .catch(err => {
