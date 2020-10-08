@@ -65,9 +65,9 @@
                                 <div class="movie-list-data movie-list-data-lists">
                                     <img class ="thumbnail" src="<%=pickedMovies[i].Poster%>" alt="<%=pickedMovies[i].Poster%>" />
                                     <div class='title-genres'>
-                                        <h2>
-                                            <a href="/movies/<%=pickedMovies[i].imdbID%>"><%=pickedMovies[i].Title%></a>
-                                        </h2>
+                                        <h3>
+                                            <a class='title' href="/movies/<%=pickedMovies[i].imdbID%>"><%=pickedMovies[i].Title%></a>
+                                        </h3>
                                         <p class='genres'>
                                             <% for(let j = 0; j<pickedMovies[i].Genres.length; j++){%>
                                                 <%=pickedMovies[i].Genres[j].genre%> 
@@ -97,7 +97,7 @@
                                     <img class="thumbnail" src="<%=watchedMovies[i].Poster%>" alt="<%=watchedMovies[i].Poster%>" />
                                     <div class='title-genres'>
                                         <h3>
-                                            <a href="/movies/<%=watchedMovies[i].imdbID%>"><%=watchedMovies[i].Title%></a>
+                                            <a class='title' href="/movies/<%=watchedMovies[i].imdbID%>"><%=watchedMovies[i].Title%></a>
                                         </h3>
                                         <p class='genres'>
                                             <% for(let j = 0; j<watchedMovies[i].Genres.length; j++){%>

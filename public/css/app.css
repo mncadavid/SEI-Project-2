@@ -360,10 +360,25 @@ ul{
 
 /* movie show page styling */
 
-.movie-marquee {
+.movie-show-header {
     margin: 0;
     padding: 10px;
     height: 10vh;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    align-self: flex-start;
+
+}
+
+.movie-marquee {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    width: 50%;
+    margin: 0;
+
 }
 
 .movie-show-content-box {
@@ -372,11 +387,18 @@ ul{
     flex-flow: row nowrap;
     justify-content: center;
     height: 77vh;
+    align-items: center;
+
 }
 
 .movie-poster-container {
     width: 50%;
     height: 77vh;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+
 }
 
 .poster {
@@ -387,6 +409,7 @@ ul{
     border-radius: 4px;
     padding: 5px;
     object-fit: scale-down;
+    
 }
 
 .movie-data-box {
@@ -402,7 +425,8 @@ ul{
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
-
+    width: 50%;
+    align-items: center;
 }
 
 
