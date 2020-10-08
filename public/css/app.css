@@ -275,6 +275,12 @@ ul{
 .thumbnail{
     grid-column: 1;
 }
+
+.title-header {
+    margin: 0;
+    padding: 5px;
+}
+
 .title{
     grid-column: 2;
     color: black;
@@ -283,16 +289,27 @@ ul{
     grid-column: 2;
     grid-row: 1;
 }
-.year{
-    grid-column: 3;
+.title-genres p {
+    margin: 0;
 }
+
+.movie-title-column {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.movie-data-column {
+    grid-row: 1;
+    grid-column: 3 / span 2;
+}
+.movie-data-column p {
+    margin: 0;
+}
+
 .imdbLink{
     grid-column: 4;
 }
-.director{
-    grid-row: 1;
-    grid-column: 4;
-}
+
 .add-pick-list{
     grid-column: 5;
 }

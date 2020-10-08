@@ -65,7 +65,7 @@
                                 <div class="movie-list-data movie-list-data-lists">
                                     <img class ="thumbnail" src="<%=pickedMovies[i].Poster%>" alt="<%=pickedMovies[i].Poster%>" />
                                     <div class='title-genres'>
-                                        <h3>
+                                        <h3 class='title-header'>
                                             <a class='title' href="/movies/<%=pickedMovies[i].imdbID%>"><%=pickedMovies[i].Title%></a>
                                         </h3>
                                         <p class='genres'>
@@ -73,9 +73,17 @@
                                                 <%=pickedMovies[i].Genres[j].genre%> 
                                             <% } %>
                                         </p>
+                                        <p class='year'><%=pickedMovies[i].Year%></p>
+                                        <p class='rated'>Rated: <%=pickedMovies[i].Rated%></p>
                                     </div>
-                                    <p><%=pickedMovies[i].Year%></p>
-                                    <p><%=pickedMovies[i].Director%></p>
+                                    <div class='movie-data-column'>
+                                        <p class='director'>Director: <%=pickedMovies[i].Director%></p>
+                                        <p class='metascore'>Metascore: <%=pickedMovies[i].Metascore%></p>
+                                        <p class='imdbRating'>IMDb Rating: <%=pickedMovies[i].imdbRating%></p>
+                                        <a class='imdbLink' href="https://www.imdb.com/title/<%=pickedMovies[i].imdbID%>/" target="_blank">
+                                            <%=pickedMovies[i].Title%> on IMDb
+                                        </a>
+                                    </div>
                                     <div class="button-container">
                                     <form class="change-movie-list" action="/users/lists/changeMovieList?_method=PUT" method=POST>
                                         <button class="btn btn-secondary" name='imdbId' type="submit" value="<%=pickedMovies[i].imdbID%>">Watched It!</button>
@@ -98,7 +106,7 @@
                                 <div class="movie-list-data movie-list-data-lists">
                                     <img class="thumbnail" src="<%=watchedMovies[i].Poster%>" alt="<%=watchedMovies[i].Poster%>" />
                                     <div class='title-genres'>
-                                        <h3>
+                                        <h3 class='title-header'>
                                             <a class='title' href="/movies/<%=watchedMovies[i].imdbID%>"><%=watchedMovies[i].Title%></a>
                                         </h3>
                                         <p class='genres'>
@@ -106,9 +114,17 @@
                                                 <%=watchedMovies[i].Genres[j].genre%> 
                                             <% } %>
                                         </p>
+                                        <p class='year'><%=watchedMovies[i].Year%></p>
+                                        <p class='rated'>Rated: <%=watchedMovies[i].Rated%></p>
                                     </div>
-                                    <p class='year'><%=watchedMovies[i].Year%></p>
-                                    <p class='director'><%=watchedMovies[i].Director%></p>
+                                    <div class='movie-data-column'>
+                                        <p class='director'>Director: <%=watchedMovies[i].Director%></p>
+                                        <p class='metascore'>Metascore: <%=watchedMovies[i].Metascore%></p>
+                                        <p class='imdbRating'>IMDb Rating: <%=watchedMovies[i].imdbRating%></p>
+                                        <a class='imdbLink' href="https://www.imdb.com/title/<%=watchedMovies[i].imdbID%>/" target="_blank">
+                                            <%=watchedMovies[i].Title%> on IMDb
+                                        </a>
+                                    </div>
                                     <div class='button-container'>
                                         <form class="change-movie-list" action="/users/lists/changeMovieList?_method=PUT" method=POST>
                                             <button class="btn btn-secondary" name='imdbId' type="submit" value="<%=watchedMovies[i].imdbID%>">Didn't see it?</button>
