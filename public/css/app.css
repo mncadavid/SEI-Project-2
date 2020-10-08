@@ -260,7 +260,7 @@ ul{
 .movie-list-data{
     display: grid;
     grid-template-rows: 20vh;
-    grid-template-columns: 84px 4fr 40px 2fr 1fr 1fr;
+    grid-template-columns: 84px 4fr 40px 2fr 1fr;
     text-align: center;
     height: 100%;
 }
@@ -292,19 +292,18 @@ ul{
 .add-pick-list{
     grid-column: 5;
 }
-.change-movie-list{
-    grid-column: 5;
-    grid-row: 1;
-}
 .add-watch-list{
-    grid-column: 6;
+    grid-column: 5;
+}
+.remove-from-list{
+    grid-column: 5;
 }
 .button-container{
-    grid-column: 6;
+    grid-column: 5;
     grid-row: 1;
     display:flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 .thumbnail {
     border: 1px solid #ddd;
@@ -434,7 +433,9 @@ ul{
 .favorite-count{
     float: left;
     margin-right: 5px;
+    color: gold;
 }
 .favorite-count h2{
     display: inline;
+    color: gold;
 }
