@@ -62,18 +62,20 @@
                     <ul>
                         <% for(let i=0; i<pickedMovies.length; i++){%>
                             <li class="movie-list-item">
-                                <div class="movie-list-data">
+                                <div class="movie-list-data movie-list-data-lists">
                                     <img class ="thumbnail" src="<%=pickedMovies[i].Poster%>" alt="<%=pickedMovies[i].Poster%>" />
-                                    <h3>
-                                        <a href="/movies/<%=pickedMovies[i].imdbID%>"><%=pickedMovies[i].Title%></a>
-                                    </h3>
-                                    <h4>
-                                        <% for(let j = 0; j<pickedMovies[i].Genres.length; j++){%>
-                                            <%=pickedMovies[i].Genres[j].genre%> 
-                                        <% } %>
-                                    </h4>
-                                    <h4><%=pickedMovies[i].Year%></h4>
-                                    <h4><%=pickedMovies[i].Director%></h4>
+                                    <div class='title-genres'>
+                                        <h2>
+                                            <a href="/movies/<%=pickedMovies[i].imdbID%>"><%=pickedMovies[i].Title%></a>
+                                        </h2>
+                                        <p class='genres'>
+                                            <% for(let j = 0; j<pickedMovies[i].Genres.length; j++){%>
+                                                <%=pickedMovies[i].Genres[j].genre%> 
+                                            <% } %>
+                                        </p>
+                                    </div>
+                                    <p><%=pickedMovies[i].Year%></p>
+                                    <p><%=pickedMovies[i].Director%></p>
                                     <form class="change-movie-list" action="/users/lists/changeMovieList?_method=PUT" method=POST>
                                         <button name='imdbId' type="submit" value="<%=pickedMovies[i].imdbID%>">Watched It!</button>
                                     </form>
@@ -91,31 +93,35 @@
                     <ul>
                         <% for(let i=0; i<watchedMovies.length; i++){%>
                             <li class="movie-list-item">
-                                <div class="movie-list-data">
+                                <div class="movie-list-data movie-list-data-lists">
                                     <img class="thumbnail" src="<%=watchedMovies[i].Poster%>" alt="<%=watchedMovies[i].Poster%>" />
-                                    <h3>
-                                        <a href="/movies/<%=watchedMovies[i].imdbID%>"><%=watchedMovies[i].Title%></a>
-                                    </h3>
-                                    <h4>
-                                        <% for(let j = 0; j<watchedMovies[i].Genres.length; j++){%>
-                                            <%=watchedMovies[i].Genres[j].genre%> 
-                                        <% } %>
-                                    </h4>
-                                    <h4><%=watchedMovies[i].Year%></h4>
-                                    <h4><%=watchedMovies[i].Director%></h4>
-                                    <form class="mark-favorited" action="/users/lists/markMovieFavorite?_method=PUT" method=POST>
-                                        <button name='imdbId' value='<%=watchedMovies[i].imdbID%>' type='submit' class="favorite-button glyphicon glyphicon-star" 
-                                            <% if(watchedMovies[i].UserMovie.favorite) { %>
-                                                style="color:gold" 
+                                    <div class='title-genres'>
+                                        <h3>
+                                            <a href="/movies/<%=watchedMovies[i].imdbID%>"><%=watchedMovies[i].Title%></a>
+                                        </h3>
+                                        <p class='genres'>
+                                            <% for(let j = 0; j<watchedMovies[i].Genres.length; j++){%>
+                                                <%=watchedMovies[i].Genres[j].genre%> 
                                             <% } %>
-                                        ></button>
-                                    </form>
+                                        </p>
+                                    </div>
+                                    <p class='year'><%=watchedMovies[i].Year%></p>
+                                    <p class='director'><%=watchedMovies[i].Director%></p>
                                     <form class="change-movie-list" action="/users/lists/changeMovieList?_method=PUT" method=POST>
                                         <button name='imdbId' type="submit" value="<%=watchedMovies[i].imdbID%>">Didn't see it?</button>
                                     </form>
-                                    <form class="remove-from-list" action='/users/lists/delete?_method=DELETE' method=POST>
-                                        <button name='imdbId' type="submit" value="<%=watchedMovies[i].imdbID%>">Ditch It!</button>
-                                    </form>
+                                    <div class='button-container'>
+                                        <form class="remove-from-list" action='/users/lists/delete?_method=DELETE' method=POST>
+                                            <button name='imdbId' type="submit" value="<%=watchedMovies[i].imdbID%>">Ditch It!</button>
+                                        </form>
+                                        <form class="mark-favorited" action="/users/lists/markMovieFavorite?_method=PUT" method=POST>
+                                            <button name='imdbId' value='<%=watchedMovies[i].imdbID%>' type='submit' class="favorite-button glyphicon glyphicon-star" 
+                                                <% if(watchedMovies[i].UserMovie.favorite) { %>
+                                                    style="color:gold" 
+                                                <% } %>
+                                            ></button>
+                                        </form>
+                                    </div>
                                 </div>
                             </li>
                         <%}%>
