@@ -7,10 +7,12 @@ const Genre = require('../models').Genre;
 
 
 const renderSignUp = (req,res) => {
+    let message = req.query.message;
     Genre.findAll()
     .then(genres => {
         res.render('auth/signup.ejs', {
-            genres: genres
+            genres: genres,
+            message: message
         });
     })
     .catch(err => {
@@ -50,7 +52,13 @@ const signUpUser = (req,res) => {
                res.redirect(`/users/profile`);
            })
            .catch(err => {
-               console.log(err);
+               if(err.name === 'SequelizeUniqueConstraintError'){
+                    let message = "Username Taken";
+                    res.redirect(`/auth/signup?message=${message}`);
+               }
+               else{
+                    console.log(err);
+               }
            })
        })
     })
