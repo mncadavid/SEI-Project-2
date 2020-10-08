@@ -257,18 +257,6 @@ ul{
     background-color: #BFBFBF;
 }
 
-.search-again-tag {
-    margin: 0 auto;
-    width: 30%;
-    color: black;
-    padding: 10px;
-}
-
-.search-web-button {
-    margin: 0 auto;
-    width: 18%;
-}
-
 .movie-list-data{
     display: grid;
     grid-template-rows: 20vh;
