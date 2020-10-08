@@ -14,7 +14,7 @@
     <header>
         <nav>
             <nav class="nav-bar">
-                <a class="active" href="/movies">Pik a Flik!</a>
+                <a class="active" href="/movies">Pik-a-Flik!</a>
                 <a href='/movies/favorites'>All-Time Favorites</a>
                 <a href="/users/lists">My Lists</a>
                 <a href="/users/profile">My Account</a>
@@ -54,7 +54,7 @@
             </div>
         
             <div class="movie-data-box">
-                <h4>
+                <h3>
                     <% if(locals.genres) { %>
                         <% for(let i = 0; i<genres.length; i++) { %>
                             <%=genres[i]%> 
@@ -64,15 +64,15 @@
                             <%=genresObjects[i].genre%> 
                         <% } %>
                     <% } %>
-                </h4>
-                <p><%=movie.Year%></p>
-                <p>Rated: <%=movie.Rated%> runtime <%=movie.Runtime%></p>
-                <p>Directed by: <%=movie.Director%></p>
-                <p>Written by: <%=movie.Writer%></p>
-                <p>Actors: <%=movie.Actors%></p>
-                <p>Metascore: <%=movie.Metascore%></p>
-                <p>IMDb Rating: <%=movie.imdbRating%></p>
-                <p>Plot: <%=movie.Plot%></p>
+                </h3>
+                <p><b><%=movie.Year%></b></p>
+                <p><b>Rated:</b> <%=movie.Rated%> runtime <%=movie.Runtime%></p>
+                <p><b>Directed by:</b> <%=movie.Director%></p>
+                <p><b>Written by:</b> <%=movie.Writer%></p>
+                <p><b>Actors:</b> <%=movie.Actors%></p>
+                <p><b>Metascore:</b> <%=movie.Metascore%></p>
+                <p><b>IMDb Rating:</b> <%=movie.imdbRating%></p>
+                <p><b>Plot:</b> <%=movie.Plot%></p>
             </div>
         </div>
     </div>

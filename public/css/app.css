@@ -264,7 +264,7 @@ ul{
 .movie-list-data{
     display: grid;
     grid-template-rows: 20vh;
-    grid-template-columns: 84px 4fr 40px 2fr 1fr;
+    grid-template-columns: 1fr 3fr 1fr 2fr 1fr;
     text-align: center;
     height: 100%;
 }
@@ -291,6 +291,9 @@ ul{
 }
 .title-genres p {
     margin: 0;
+}
+.title:hover {
+    color: black;
 }
 
 .movie-title-column {
@@ -330,7 +333,7 @@ ul{
     border: 1px solid #ddd;
     border-radius: 4px;
     padding: 2px;
-    height: 18vh;
+    height: 20vh;
     object-fit: scale-down;
 }
 
@@ -360,7 +363,7 @@ ul{
   }
 
 .lists-box {
-    height: 90%;
+    height: 83%;
     width: 100%;
     display: flex;
     flex-flow: row nowrap;
@@ -368,7 +371,7 @@ ul{
 }
 
 .list-page-scroll-box {
-    height:91%;
+    height: 100%;
     width: 100%;
     overflow:auto;
     background-color:#ECECEC;
@@ -435,10 +438,12 @@ ul{
 .movie-data-box {
     padding: 0 20px 20px 20px;
     margin: 0 auto;
+
 }
 .movie-data-box p {
     margin: 0;
     width: 100%;
+    padding: 5px 0;
 }
 
 .show-page-list-buttons {
