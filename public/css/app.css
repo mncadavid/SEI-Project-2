@@ -188,8 +188,8 @@ ul{
     padding: 10px;
 }
 
-.account-edit-content{
-
+.account-form{
+    float: right;
 }
 
 /* movie search styling */
