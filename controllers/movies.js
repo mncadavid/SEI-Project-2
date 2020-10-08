@@ -38,7 +38,6 @@ const renderMovieShowPage = (req, res) => {
                     method: 'get'
                 })
                 .then(response => {
-                    console.log(response.data);
                     Movie.update(response.data, {
                         where: {imdbID: req.params.imdbID},
                         returning: true
@@ -274,7 +273,6 @@ const searchForMovie = (req, res) => {
     })
     .then( movies => {
         if(movies.length != 0) {
-            console.log(movies[0]);
             res.render('movies/index.ejs', {
                 movies: movies,
                 searchedTitle: req.body.title

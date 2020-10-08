@@ -248,9 +248,11 @@ ul{
 }
 .picked-list{
     width:50%;
+    margin-top: 10px;
 }
 .watched-list{
     width:50%;
+    margin-top: 10px;
 }
 .movie-list-item {
     border: solid black;
