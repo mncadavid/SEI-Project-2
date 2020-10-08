@@ -233,9 +233,8 @@ ul{
     background-color: #BFBFBF;
 }
 .search-again-tag{
-    margin-left: 35%;
-    display: inline-block;
-    text-justify: center;
+    margin: 0 auto;
+    display: table;
 }
 .search-again-header{
     display: inline-block;
