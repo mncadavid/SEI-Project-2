@@ -41,11 +41,11 @@
                             <li class='movie-list-item'>
                                 <div class='movie-list-data'>
                                     <img class='thumbnail ' src="<%=movies[i].Poster%>" alt="">
-                                    <a href="/movies/<%=movies[i].imdbID%>">
+                                    <a class='title' href="/movies/<%=movies[i].imdbID%>">
                                         <h2><%=movies[i].Title%></h2>
                                     </a>
-                                    <p><%=movies[i].Year%></p>
-                                    <a href="https://www.imdb.com/title/<%=movies[i].imdbID%>/">
+                                    <p class='year'><%=movies[i].Year%></p>
+                                    <a class='imdbLink' href="https://www.imdb.com/title/<%=movies[i].imdbID%>/">
                                         <%=movies[i].Title%> on IMDb
                                     </a>
     
