@@ -223,7 +223,8 @@ const renderFavoritesPageFiltered  = (req, res) => {
                     })
                     .then(foundMovie => {
                         if(req.body.pickedGenre == 'allGenres') {
-                            watchedList.push(foundUser.Movies[i]);
+                            favoriteMovies.push(foundMovie);
+                            favoriteCountArray.push(favoriteCounts[i].dataValues.favoriteCount);
                         } else {
                             for(let j = 0 ; j < foundMovie.Genres.length ; j++) {
                                 if(foundMovie.Genres[j].genre == req.body.pickedGenre) {
