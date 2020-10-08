@@ -7,7 +7,7 @@ const Genre = require('../models').Genre;
 
 
 const renderSignUp = (req,res) => {
-    
+
     let message = req.query.message;
     Genre.findAll()
     .then(genres => {
@@ -84,7 +84,6 @@ const logInUser = (req,res) => {
                             expiresIn: "30 days"
                         }
                     )
-                    console.log(token);
                     res.cookie("jwt",token);
                     res.redirect(`/movies`);
                 } else{
