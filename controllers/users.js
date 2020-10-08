@@ -98,8 +98,6 @@ const renderUserListsFiltered = (req, res) => {
                     } else {
                         for(let j = 0 ; j < foundUser.Movies[i].Genres.length ; j++) {
                             if(foundUser.Movies[i].Genres[j].genre == req.body.watchedGenre) {
-                                console.log(foundUser.Movies[i].Genres[j].genre);
-
                                 watchedList.push(foundUser.Movies[i]);
                             }
                         }
@@ -110,7 +108,6 @@ const renderUserListsFiltered = (req, res) => {
                     } else {
                         for(let j = 0 ; j < foundUser.Movies[i].Genres.length ; j++) {
                             if(foundUser.Movies[i].Genres[j].genre == req.body.pickedGenre) {
-                                console.log(foundUser.Movies[i].Genres[j].genre);
                                 pickedList.push(foundUser.Movies[i]);
                             }
                         }
