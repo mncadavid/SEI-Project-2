@@ -342,12 +342,17 @@ const searchForMovie = (req, res) => {
 }
 
 const searchforMovieWeb = (req, res) => {
+    console.log(req.body.searchedTitle);
+
     axios({
         url: `http://www.omdbapi.com/?s=${req.body.searchedTitle}&type=movie&apikey=${process.env.OMDB_API_KEY}`,
         method: 'get'
     })
     .then(response => {
         const foundMovies = response.data.Search;
+
+        console.log(response);
+
 
         if(foundMovies != undefined) {
             let userPromises = [];
@@ -396,9 +401,13 @@ const searchforMovieWeb = (req, res) => {
             .catch (err => {
                 console.log(err);
             })
+        } else if(response.data.Error === 'Too many results.') {
+            res.render('movies/index.ejs', {
+                message: 'Too many results, please search something more specific'
+            });
         } else {
             res.render('movies/index.ejs', {
-                message: `Unable to find any movies matching ${req.body.title}`
+                message: `Unable to find any movies matching ${req.body.searchedTitle}`
             });
         }
     })
