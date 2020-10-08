@@ -139,50 +139,131 @@ const renderMovieShowPage = (req, res) => {
     });
 }
 
-
-const renderFavoritesPage = (req,res) => {
-    console.log("HERE");
-    UserMovie.findAll({
-        where: {
-            favorite:true
-        },
-        attributes: ['movieId', [sequelize.fn('count', sequelize.col('UserMovie.favorite')), 'favoriteCount']],
-        group: ['UserMovie.movieId'],
-        order:[
-            [sequelize.col('favoriteCount'), 'DESC']
+const renderFavoritesPage = (req, res) => {
+    Genre.findAll({
+        order: [
+            ['genre','ASC']
         ]
     })
-    .then(favoriteCounts => {
-        let favoriteMovies = [];
-        let favoriteCountArray = [];
-        let favoritePromises = [];
-        for (let i = 0; i< favoriteCounts.length; i++){
-            favoritePromises.push(
-                Movie.findByPk(favoriteCounts[i].movieId)
-                .then(foundMovie => {
-                    favoriteMovies.push(foundMovie);
-                    favoriteCountArray.push(favoriteCounts[i].dataValues.favoriteCount);
-                })
-                .catch(err => {
-                    console.log(err.name);
-                })
-            )
-        }
-        Promise.all(favoritePromises)
-        .then(resolvedPromises => {
-            res.render('movies/favorites.ejs',
-                {
-                    movies: favoriteMovies,
-                    favorites: favoriteCountArray
-                }
-            )
+    .then(genres => {
+        UserMovie.findAll({
+            where: {
+                favorite:true
+            },
+            attributes: ['movieId', [sequelize.fn('count', sequelize.col('UserMovie.favorite')), 'favoriteCount']],
+            group: ['UserMovie.movieId'],
+            order:[
+                [sequelize.col('favoriteCount'), 'DESC']
+            ]
         })
+        .then(favoriteCounts => {
+            let favoriteMovies = [];
+            let favoriteCountArray = [];
+            let favoritePromises = [];
+            for (let i = 0; i< favoriteCounts.length; i++){
+                favoritePromises.push(
+                    Movie.findByPk(favoriteCounts[i].movieId)
+                    .then(foundMovie => {
+                        favoriteMovies.push(foundMovie);
+                        favoriteCountArray.push(favoriteCounts[i].dataValues.favoriteCount);
+                    })
+                    .catch(err => {
+                        console.log(err.name);
+                    })
+                )
+            }
+            Promise.all(favoritePromises)
+            .then(resolvedPromises => {
+                res.render('movies/favorites.ejs',
+                    {
+                        movies: favoriteMovies,
+                        favorites: favoriteCountArray,
+                        genres: genres
+                    }
+                )
+            })
+        })
+        .catch(err => {
+            console.log(err);
+        });
     })
     .catch(err => {
         console.log(err);
-    })
+    });
 }
 
+const renderFavoritesPageFiltered  = (req, res) => {
+    Genre.findAll({
+        order: [
+            ['genre','ASC']
+        ]
+    })
+    .then(genres => {
+        UserMovie.findAll({
+            where: {
+                favorite:true
+            },
+            attributes: ['movieId', [sequelize.fn('count', sequelize.col('UserMovie.favorite')), 'favoriteCount']],
+            group: ['UserMovie.movieId'],
+            order:[
+                [sequelize.col('favoriteCount'), 'DESC']
+            ]
+        })
+        .then(favoriteCounts => {
+            let favoriteMovies = [];
+            let favoriteCountArray = [];
+            let favoritePromises = [];
+            for (let i = 0; i< favoriteCounts.length; i++){
+                favoritePromises.push(
+                    Movie.findByPk(favoriteCounts[i].movieId, {
+                        include: [{
+                            model: Genre,
+                            attributes: ['genre'] 
+                        }]
+                    })
+                    .then(foundMovie => {
+                        if(req.body.pickedGenre == 'allGenres') {
+                            watchedList.push(foundUser.Movies[i]);
+                        } else {
+                            for(let j = 0 ; j < foundMovie.Genres.length ; j++) {
+                                if(foundMovie.Genres[j].genre == req.body.pickedGenre) {
+                                    favoriteMovies.push(foundMovie);
+                                    favoriteCountArray.push(favoriteCounts[i].dataValues.favoriteCount);
+                                }
+                            }
+                        }
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    })
+                )
+            }
+            Promise.all(favoritePromises)
+            .then(resolvedPromises => {
+                res.render('movies/favorites.ejs',
+                    {
+                        movies: favoriteMovies,
+                        favorites: favoriteCountArray,
+                        genres: genres
+                    }
+                )
+            })
+        })
+        .catch(err => {
+            console.log(err);
+        });
+    })
+    .catch(err => {
+        console.log(err);
+    });
+
+
+
+
+
+
+
+}
 
 const searchForMovie = (req, res) => {
     Movie.findAll({
@@ -334,6 +415,7 @@ module.exports = {
     renderSearchPage,
     renderMovieShowPage,
     renderFavoritesPage,
+    renderFavoritesPageFiltered,
     searchForMovie,
     searchforMovieWeb
 }

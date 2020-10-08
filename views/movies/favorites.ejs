@@ -23,6 +23,22 @@
     <div class='content-box'>
         <div class='search-menu'>
             <h1>All-Time Favorites!</h1>
+
+            <form class ="filter-list-form" action='/movies/favorites/filter?_method=PUT' method=POST>
+                <select name="pickedGenre">
+                    <option value="allGenres" selected>All Genres</option>
+                    <% for(let i = 0 ; i < genres.length ; i++) { %>
+                        <option value="<%=genres[i].genre%>"
+                            <% if(locals.filters && filters.pickedGenre == genres[i].genre) { %> 
+                                selected
+                            <% } %>   
+                        >
+                            <%=genres[i].genre%>
+                        </option>
+                    <% } %>
+                </select>
+                <button type="submit">Filter</button>
+            </form>
         </div>
 
         <div class=search-scroll-box>

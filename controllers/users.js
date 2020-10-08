@@ -80,7 +80,6 @@ const renderUserLists = (req,res) => {
 }
 
 const renderUserListsFiltered = (req, res) => {
-    console.log(req.body);
     Genre.findAll({
         order: [
             ['genre','ASC']
@@ -138,7 +137,7 @@ const renderUserListsFiltered = (req, res) => {
         })
     })
     .catch(err => {
-        console.log(err.name);
+        console.log(err);
     })
     
     

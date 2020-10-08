@@ -10,5 +10,6 @@ router.get('/:imdbID', ctrl.movies.renderMovieShowPage);
 router.post('/search', ctrl.movies.searchForMovie);
 router.post('/search/web', ctrl.movies.searchforMovieWeb);
 
+router.put('/favorites/filter', ctrl.movies.renderFavoritesPageFiltered);
 
 module.exports = router;
