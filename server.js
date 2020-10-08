@@ -35,10 +35,28 @@ const verifyToken = (req, res, next) => {
     });
 }
 
+const redirectLoggedInUser = (req, res, next) => {
+    let token = req.cookies.jwt;
+    if(req.url === '/logout'){
+        return next()
+    }
+    if(token !== undefined){
+        if(token === ''){
+            next();
+        }
+        else{
+            return res.redirect('/movies');
+        }
+    }
+    else{
+        next();
+    }
+}
+
 // new routes
 app.use('/movies', verifyToken, routes.movies);
 app.use('/users', verifyToken, routes.users);
-app.use('/auth', routes.auth);
+app.use('/auth', redirectLoggedInUser, routes.auth);
 
 // splash page
 app.get('/', (req, res) => {

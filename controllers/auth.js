@@ -7,6 +7,7 @@ const Genre = require('../models').Genre;
 
 
 const renderSignUp = (req,res) => {
+    
     let message = req.query.message;
     Genre.findAll()
     .then(genres => {
