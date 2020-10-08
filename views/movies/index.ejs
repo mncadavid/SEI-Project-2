@@ -52,24 +52,23 @@
                                     <form class="add-pick-list" action='/users/lists/addUserMovie' method=POST>
                                         <input name='haveSeen' value='false' type="hidden">
                                         <input name='favorite' value='false' type="hidden">
-                                        <button name='imdbId' type="submit" value="<%=movies[i].imdbID%>">Pick It!</button>
+                                        <button class="btn btn-primary"  name='imdbId' type="submit" value="<%=movies[i].imdbID%>">Pik It!</button>
                                     </form>
                                     <form class="add-watch-list" action='/users/lists/addUserMovie' method=POST>
                                         <input name='haveSeen' value='true' type="hidden">
                                         <input name='favorite' value='false' type="hidden">
-                                        <button name='imdbId' type="submit" value="<%=movies[i].imdbID%>">Seen It!</button>
+                                        <button class="btn btn-primary"  name='imdbId' type="submit" value="<%=movies[i].imdbID%>">Seen It!</button>
                                     </form>
                                 </div>
                             </li>
                         <% } %>
                     </ul>
                 </div>
-                <h3 class="search-again-tag">Don't see what you're looking for? 
-                    <form class="search-web-button" action="/movies/search/web" method=POST>
-                        <input type="hidden" name="searchedTitle" value="<%=searchedTitle%>" />
-                        <button type="submit">Get more results from the web</button>
-                    </form>
-                </h3>
+                <h3 class="search-again-tag">Don't see what you're looking for?</h3>
+                <form class="search-web-button" action="/movies/search/web" method=POST>
+                    <input type="hidden" name="searchedTitle" value="<%=searchedTitle%>" />
+                    <button class="btn btn-dark" type="submit">Get more results from the web</button>
+                </form>
             <% } %>
         </div>
     

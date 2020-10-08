@@ -77,10 +77,10 @@
                                     <p><%=pickedMovies[i].Year%></p>
                                     <p><%=pickedMovies[i].Director%></p>
                                     <form class="change-movie-list" action="/users/lists/changeMovieList?_method=PUT" method=POST>
-                                        <button name='imdbId' type="submit" value="<%=pickedMovies[i].imdbID%>">Watched It!</button>
+                                        <button class="btn btn-primary" name='imdbId' type="submit" value="<%=pickedMovies[i].imdbID%>">Watched It!</button>
                                     </form>
                                     <form class ="remove-from-list" action='/users/lists/delete?_method=DELETE' method=POST>
-                                        <button name='imdbId' type="submit" value="<%=pickedMovies[i].imdbID%>">Ditch It!</button>
+                                        <button class="btn btn-primary" name='imdbId' type="submit" value="<%=pickedMovies[i].imdbID%>">Ditch It!</button>
                                     </form>
                                 </div>
                             </li>
@@ -108,11 +108,11 @@
                                     <p class='year'><%=watchedMovies[i].Year%></p>
                                     <p class='director'><%=watchedMovies[i].Director%></p>
                                     <form class="change-movie-list" action="/users/lists/changeMovieList?_method=PUT" method=POST>
-                                        <button name='imdbId' type="submit" value="<%=watchedMovies[i].imdbID%>">Didn't see it?</button>
+                                        <button class="btn btn-primary" name='imdbId' type="submit" value="<%=watchedMovies[i].imdbID%>">Didn't see it?</button>
                                     </form>
                                     <div class='button-container'>
                                         <form class="remove-from-list" action='/users/lists/delete?_method=DELETE' method=POST>
-                                            <button name='imdbId' type="submit" value="<%=watchedMovies[i].imdbID%>">Ditch It!</button>
+                                            <button class="btn btn-primary" name='imdbId' type="submit" value="<%=watchedMovies[i].imdbID%>">Ditch It!</button>
                                         </form>
                                         <form class="mark-favorited" action="/users/lists/markMovieFavorite?_method=PUT" method=POST>
                                             <button name='imdbId' value='<%=watchedMovies[i].imdbID%>' type='submit' class="favorite-button glyphicon glyphicon-star" 
