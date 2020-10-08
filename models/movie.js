@@ -25,14 +25,14 @@ module.exports = (sequelize, DataTypes) => {
   Movie.init({
     imdbID: DataTypes.STRING,
     Title: DataTypes.STRING,
-    Poster: DataTypes.STRING,
+    Poster: DataTypes.TEXT,
     Year: DataTypes.STRING,
     Director: DataTypes.STRING,
     Plot: DataTypes.TEXT,
     Rated: DataTypes.STRING,
     Runtime: DataTypes.STRING,
-    Writer: DataTypes.STRING,
-    Actors: DataTypes.STRING,
+    Writer: DataTypes.TEXT,
+    Actors: DataTypes.TEXT,
     Metascore: DataTypes.STRING,
     imdbRating: DataTypes.STRING
   }, {
