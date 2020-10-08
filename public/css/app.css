@@ -230,6 +230,18 @@ ul{
     justify-content: space-evenly;
     background-color: #BFBFBF;
 }
+.search-again-tag{
+    margin: 0 auto;
+    display: table;
+}
+.search-again-header{
+    display: inline-block;
+    color: black;
+}
+.search-web-button{
+    display: inline-block;
+    margin-left: 20%;
+}
 .picked-list{
     width:50%;
 }

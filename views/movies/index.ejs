@@ -64,11 +64,15 @@
                         <% } %>
                     </ul>
                 </div>
-                <h3 class="search-again-tag">Don't see what you're looking for?</h3>
-                <form class="search-web-button" action="/movies/search/web" method=POST>
-                    <input type="hidden" name="searchedTitle" value="<%=searchedTitle%>" />
-                    <button class="btn btn-dark" type="submit">Get more results from the web</button>
-                </form>
+
+                <div class="search-again-tag">
+                    <h3 class="search-again-header">Don't see what you're looking for? </h3>
+                    <br>
+                    <form class="search-web-button" action="/movies/search/web" method=POST>
+                        <input type="hidden" name="searchedTitle" value="<%=searchedTitle%>" />
+                        <button type="submit">Get more results from the web</button>
+                    </form>
+                </div>
             <% } %>
         </div>
     
