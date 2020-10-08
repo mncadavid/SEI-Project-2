@@ -95,7 +95,6 @@ ul{
 }
 
 .auth-content h1{
-    /* font-family: 'Righteous', cursive; */
     margin: 0;
     font-weight: bold;
 }
@@ -144,7 +143,6 @@ ul{
 }
 
 .auth-content h1{
-    /* font-family: 'Righteous', cursive; */
     margin: 0;
     font-weight: bold;
 }
@@ -257,19 +255,23 @@ ul{
     padding: 10px;
     border-radius: 5px;
     background-color: #BFBFBF;
-    /* display: flex; */
 }
 
-/* .movie-list-data {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-between;
-} */
+.search-again-tag {
+    margin: 0 auto;
+    width: 30%;
+    color: black;
+    padding: 10px;
+}
+
+.search-web-button {
+    margin: 0 auto;
+    width: 18%;
+}
 
 .movie-list-data{
     display: grid;
     grid-template-rows: 20vh;
-    /* need 7 columns */
     grid-template-columns: 84px 4fr 40px 2fr 1fr 1fr;
     text-align: center;
     height: 100%;
@@ -283,7 +285,7 @@ ul{
 }
 .title{
     grid-column: 2;
-    /* color:white; */
+    color: black;
 }
 .title-genres{
     grid-column: 2;
@@ -324,13 +326,6 @@ ul{
     object-fit: scale-down;
 }
 
-.poster {
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    padding: 5px;
-    height: 50vh;
-    object-fit: scale-down;
-}
 
 /* list page styling */
 
@@ -374,6 +369,78 @@ ul{
     font-family:sans-serif;
     padding:10px;
 }
+
+/* movie show page styling */
+
+.movie-show-header {
+    margin: 0;
+    padding: 10px;
+    height: 10vh;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    align-self: flex-start;
+
+}
+
+.movie-marquee {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    width: 50%;
+    margin: 0;
+
+}
+
+.movie-show-content-box {
+    margin: auto 0;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    height: 77vh;
+    align-items: center;
+
+}
+
+.movie-poster-container {
+    width: 50%;
+    height: 77vh;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.poster {
+    margin: 20px;;
+    width: auto;
+    height: auto;
+    border: 10px solid black;
+    border-radius: 4px;
+    padding: 5px;
+    object-fit: scale-down;
+    
+}
+
+.movie-data-box {
+    padding: 0 20px 20px 20px;
+    margin: 0 auto;
+}
+.movie-data-box p {
+    margin: 0;
+    width: 100%;
+}
+
+.show-page-list-buttons {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    width: 50%;
+    align-items: center;
+}
+
 
 /* favorite styling */
 .favorite-count{

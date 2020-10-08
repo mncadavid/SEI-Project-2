@@ -52,18 +52,19 @@
                                     <form class="add-pick-list" action='/users/lists/addUserMovie' method=POST>
                                         <input name='haveSeen' value='false' type="hidden">
                                         <input name='favorite' value='false' type="hidden">
-                                        <button name='imdbId' type="submit" value="<%=movies[i].imdbID%>">Pick It!</button>
+                                        <button class="btn btn-primary"  name='imdbId' type="submit" value="<%=movies[i].imdbID%>">Pik It!</button>
                                     </form>
                                     <form class="add-watch-list" action='/users/lists/addUserMovie' method=POST>
                                         <input name='haveSeen' value='true' type="hidden">
                                         <input name='favorite' value='false' type="hidden">
-                                        <button name='imdbId' type="submit" value="<%=movies[i].imdbID%>">Seen It!</button>
+                                        <button class="btn btn-primary"  name='imdbId' type="submit" value="<%=movies[i].imdbID%>">Seen It!</button>
                                     </form>
                                 </div>
                             </li>
                         <% } %>
                     </ul>
                 </div>
+
                 <div class="search-again-tag">
                     <h3 class="search-again-header">Don't see what you're looking for? </h3>
                     <br>
