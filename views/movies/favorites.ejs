@@ -12,7 +12,7 @@
 <body>
     <header>
         <nav class="nav-bar">
-            <a href="/movies">Pik a Flik!</a>
+            <a href="/movies">Pik-a-Flik!</a>
             <a class="active" href='#'>All-Time Favorites</a>
             <a href="/users/lists">My Lists</a>
             <a href="/users/profile">My Account</a>
@@ -53,13 +53,25 @@
                                 </div>
                                 <div class='movie-list-data'>
                                     <img class='thumbnail ' src="<%=movies[i].Poster%>" alt="">
-                                    <a class='title' href="/movies/<%=movies[i].imdbID%>">
-                                        <h2><%=movies[i].Title%></h2>
-                                    </a>
-                                    <p class='year'><%=movies[i].Year%></p>
-                                    <a class='imdbLink' href="https://www.imdb.com/title/<%=movies[i].imdbID%>/" target="_blank">
-                                        <%=movies[i].Title%> on IMDb
-                                    </a>
+                                    
+                                    <div class='movie-title-column'>
+                                        <h2>
+                                            <a class='title' href="/movies/<%=movies[i].imdbID%>"><%=movies[i].Title%></a>
+                                        </h2>
+                                        <p class='genres'>
+                                            <% for(let j = 0; j<movies[i].Genres.length; j++){%>
+                                                <%=movies[i].Genres[j].genre%> 
+                                            <% } %>
+                                        </p>
+                                    </div>
+
+                                    <div class='movie-data-column'>
+                                        <p class='year'><%=movies[i].Year%></p>
+                                        <a class='imdbLink' href="https://www.imdb.com/title/<%=movies[i].imdbID%>/" target="_blank">
+                                            <%=movies[i].Title%> on IMDb
+                                        </a>
+
+                                    </div>
                                     <div class='button-container'>
                                         <form class="add-pick-list add-pick-list-movie-tile" action='/users/lists/addUserMovie' method=POST>
                                             <input name='haveSeen' value='false' type="hidden">

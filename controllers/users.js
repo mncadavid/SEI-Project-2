@@ -43,7 +43,7 @@ const renderUserLists = (req,res) => {
             include: [
                 {
                     model: Movie,
-                    attributes: ['imdbID', 'Title', 'Poster', 'Year', 'Director', 'Plot'],
+                    attributes: ['imdbID', 'Title', 'Poster', 'Year', 'Director', 'Plot', 'Rated', 'Runtime', 'Metascore', 'imdbRating'],
                     include: [{
                         model: Genre,
                         attributes: ['genre'] 

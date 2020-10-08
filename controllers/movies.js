@@ -161,7 +161,12 @@ const renderFavoritesPage = (req, res) => {
             let favoritePromises = [];
             for (let i = 0; i< favoriteCounts.length; i++){
                 favoritePromises.push(
-                    Movie.findByPk(favoriteCounts[i].movieId)
+                    Movie.findByPk(favoriteCounts[i].movieId, {
+                        include: [{
+                            model: Genre,
+                            attributes: ['genre'] 
+                        }]
+                    })
                     .then(foundMovie => {
                         favoriteMovies.push(foundMovie);
                         favoriteCountArray.push(favoriteCounts[i].dataValues.favoriteCount);
