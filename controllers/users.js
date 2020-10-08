@@ -11,7 +11,11 @@ const renderUserProfile = (req,res) => {
     req.query = {};
     User.findByPk(req.user.id)
     .then(user => {
-        Genre.findAll()
+        Genre.findAll({
+            order: [
+                ['genre','ASC']
+            ]
+        })
         .then(genres => {
             res.render('users/profile.ejs', {
                 user: user,
@@ -29,7 +33,11 @@ const renderUserProfile = (req,res) => {
 }
 
 const renderUserLists = (req,res) => {
-    Genre.findAll()
+    Genre.findAll({
+        order: [
+            ['genre','ASC']
+        ]
+    })
     .then(genres => {
         User.findByPk(req.user.id, {
             include: [
@@ -72,8 +80,11 @@ const renderUserLists = (req,res) => {
 }
 
 const renderUserListsFiltered = (req, res) => {
-    console.log(req.body);
-    Genre.findAll()
+    Genre.findAll({
+        order: [
+            ['genre','ASC']
+        ]
+    })
     .then(genres => {
         User.findByPk(req.user.id, {
             include: [
@@ -126,7 +137,7 @@ const renderUserListsFiltered = (req, res) => {
         })
     })
     .catch(err => {
-        console.log(err.name);
+        console.log(err);
     })
     
     
