@@ -21,8 +21,13 @@
     <div class='auth-content'>
         <h1>Pik a Flik!</h1>
         <br><br>
+        
         <div class="sign-up-content">
             <form class="sign-up-form" action='/auth/signup' method=POST>
+                <% if(locals.message) { %>
+                    <h2><%=message%></h2><br><br>
+                <% } %>
+                <br>
                 <h2>Name:  </h2> 
                 <input type="text" name="name" required> <br><br>
                 <h2>Username:  </h2> 
