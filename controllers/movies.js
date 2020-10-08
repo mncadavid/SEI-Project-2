@@ -264,10 +264,10 @@ const searchForMovie = (req, res) => {
 
 const searchforMovieWeb = (req, res) => {
     axios({
-        url: `http://www.omdbapi.com/?s=${req.body.title}&type=movie&apikey=${process.env.OMDB_API_KEY}`,
+        url: `http://www.omdbapi.com/?s=${req.body.searchedTitle}&type=movie&apikey=${process.env.OMDB_API_KEY}`,
         method: 'get'
     })
-    .then((response) => {
+    .then(response => {
         const foundMovies = response.data.Search;
 
         if(foundMovies != undefined) {
