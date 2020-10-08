@@ -244,7 +244,8 @@ const renderFavoritesPageFiltered  = (req, res) => {
                     {
                         movies: favoriteMovies,
                         favorites: favoriteCountArray,
-                        genres: genres
+                        genres: genres,
+                        filters: req.body
                     }
                 )
             })
@@ -256,13 +257,6 @@ const renderFavoritesPageFiltered  = (req, res) => {
     .catch(err => {
         console.log(err);
     });
-
-
-
-
-
-
-
 }
 
 const searchForMovie = (req, res) => {
