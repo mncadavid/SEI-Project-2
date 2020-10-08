@@ -77,6 +77,10 @@ ul{
     padding-inline-start: 0px;
 }
 
+.btn-secondary{
+    background-color: #BFBFBF;
+}
+
 /* login page styling */
 .auth-body{
     background-color: black;
