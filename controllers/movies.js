@@ -168,8 +168,8 @@ const renderFavoritesPage = (req, res) => {
                         }]
                     })
                     .then(foundMovie => {
-                        favoriteMovies.push(foundMovie);
-                        favoriteCountArray.push(favoriteCounts[i].dataValues.favoriteCount);
+                        favoriteMovies[i] = foundMovie;
+                        favoriteCountArray[i] = favoriteCounts[i].dataValues.favoriteCount;
                     })
                     .catch(err => {
                         console.log(err.name);
@@ -217,6 +217,7 @@ const renderFavoritesPageFiltered  = (req, res) => {
             let favoriteMovies = [];
             let favoriteCountArray = [];
             let favoritePromises = [];
+            let addedMovies = 0;
             for (let i = 0; i< favoriteCounts.length; i++){
                 favoritePromises.push(
                     Movie.findByPk(favoriteCounts[i].movieId, {
@@ -227,13 +228,14 @@ const renderFavoritesPageFiltered  = (req, res) => {
                     })
                     .then(foundMovie => {
                         if(req.body.pickedGenre == 'allGenres') {
-                            favoriteMovies.push(foundMovie);
-                            favoriteCountArray.push(favoriteCounts[i].dataValues.favoriteCount);
+                            favoriteMovies[i] = foundMovie;
+                            favoriteCountArray[i] = favoriteCounts[i].dataValues.favoriteCount;
                         } else {
                             for(let j = 0 ; j < foundMovie.Genres.length ; j++) {
                                 if(foundMovie.Genres[j].genre == req.body.pickedGenre) {
-                                    favoriteMovies.push(foundMovie);
-                                    favoriteCountArray.push(favoriteCounts[i].dataValues.favoriteCount);
+                                    favoriteMovies[addedMovies] = foundMovie;
+                                    favoriteCountArray[addedMovies] = favoriteCounts[i].dataValues.favoriteCount;
+                                    addedMovies++;
                                 }
                             }
                         }
