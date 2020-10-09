@@ -9,7 +9,11 @@ const Genre = require('../models').Genre;
 const renderSignUp = (req,res) => {
 
     let message = req.query.message;
-    Genre.findAll()
+    Genre.findAll({
+        order: [
+            ['genre','ASC']
+        ]
+    })
     .then(genres => {
         res.render('auth/signup.ejs', {
             genres: genres,
