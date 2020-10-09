@@ -49,7 +49,7 @@ const signUpUser = (req,res) => {
                    }
                )
                res.cookie("jwt", token);
-               res.redirect(`/users/profile`);
+               res.redirect(`/movies`);
            })
            .catch(err => {
                if(err.name === 'SequelizeUniqueConstraintError'){
